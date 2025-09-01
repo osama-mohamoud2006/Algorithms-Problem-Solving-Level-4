@@ -1,0 +1,7 @@
+﻿  debugging P8.cpp
+E:\projects\my library\logic_stuff.h(117,14): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+  (compiling source file 'debugging%20P8.cpp')
+  
+E:\projects\c++ course\08 - Algorithms & Problem Solving Level 4\debugging P8\debugging P8.cpp(79,13): warning C4244: 'initializing': conversion from 'double' to 'short', possible loss of data
+E:\projects\c++ course\08 - Algorithms & Problem Solving Level 4\debugging P8\debugging P8.cpp(80,13): warning C4244: 'initializing': conversion from 'double' to 'short', possible loss of data
+  debugging P8.vcxproj -> E:\projects\c++ course\08 - Algorithms & Problem Solving Level 4\debugging P8\x64\Debug\debugging P8.exe

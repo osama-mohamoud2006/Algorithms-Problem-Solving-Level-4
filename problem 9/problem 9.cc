@@ -43,12 +43,12 @@ short NumberOfDaysInMonth(short y, short m)
 void printMonthCalnder(short m, short y)
 {
     int theLastDayInMonth = NumberOfDaysInMonth(y, m); // the last day
-    int currentDay = DayOrder(y, m, 1);
+    int currentDay = DayOrder(y, m, 1); //day order starting from 0 (sun)
 
     cout << "\n______________" << monthName(m) << "______________" << endl;
 
     printf(" Sun  Mon  Tue  Wed  Thu  Fri  Sat\n");
-
+//
     for (int i = 0; i < currentDay; i++)
     {
         printf("     ");
@@ -63,7 +63,7 @@ void printMonthCalnder(short m, short y)
     printf("\n");
 }
 
-void PrintYearcalnder(short y)
+void PrintYearCalnder(short y)
 {
     for (short i = 1; i <= 12; i++)
     {
@@ -75,5 +75,5 @@ void PrintYearcalnder(short y)
 
 int main(){
      short y = enter_postive_number("\nenter y: ");
-    PrintYearcalnder(y);
+    PrintYearCalnder(y);
 }

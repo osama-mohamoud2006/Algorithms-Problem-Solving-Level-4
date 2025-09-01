@@ -19,9 +19,8 @@ short DayOrder(short year, short month, short day)
     return (day + y + ((y / 4)) - ((y / 100)) + ((y / 400)) + (((31 * m) / 12))) % 7;
 }
 
-string DayName(short year, short month, short day)
+string DayName(short dayOrder )
 {
-    short dayOrder = DayOrder(year, month, day);
     switch (dayOrder)
     {
     case 0:
@@ -47,7 +46,9 @@ int main()
     short m = enter_postive_number("\nenter m: ");
     short y = enter_postive_number("\nenter y: ");
 
+    short Dayorder =  DayOrder(y, m, d);
+
     cout << "\ndata is: " << FullDate(y, m, d) << endl;
-    cout << "day order is: " << DayOrder(y, m, d) << endl;
-    cout << "dayname is: " << DayName(y, m, d) << endl;
+    cout << "day order is: " << Dayorder<< endl;
+    cout << "dayname is: " << DayName(Dayorder) << endl;
 }

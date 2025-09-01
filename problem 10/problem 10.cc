@@ -24,14 +24,14 @@ int TotalDaysSinceTheD(short y, short m, short d)
 {
     int totalDaysInMonths = 0;
 
-    for (int i = 1; i <= m; i++)
+    for (int i = 1; i <= m-1; i++)
     {
         totalDaysInMonths += NumberOfDaysInMonth(y, i); // count the total days untill the current month
     }
 
-    int the_rest_days_in_month = NumberOfDaysInMonth(y, m) - d;
+    // int the_rest_days_in_month = NumberOfDaysInMonth(y, m) - d;
 
-    return totalDaysInMonths - the_rest_days_in_month;
+    return totalDaysInMonths += d;
 }
 
 int main()

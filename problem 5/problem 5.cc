@@ -10,18 +10,18 @@ bool isLeap(short y)
 
 short numberOfDaysInMonth(short y, short m)
 {
-    // month == 1 or month == 3 or month == 5 or month == 7 or month == 8 or month == 10 or month == 12:
     if (m == 2)
         return (isLeap(y) == true) ? 29 : 28;
 
-    // else if(m==1 || m==3 || m==5 || m==7 || m==8 || m==10 || m==12) return 31;
+    // (m==1 || m==3 || m==5 || m==7 || m==8 || m==10 || m==12) return 31;
 
     short arrIs31D[7] = {1, 3, 5, 7, 8, 10, 12};
 
-    for(short n: arrIs31D){
-        if(n==m) return 30;
+    for (short n : arrIs31D)
+    {
+        if (n == m)
+            return 30;
     }
-
 
     return 30;
 }

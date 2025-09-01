@@ -8,27 +8,29 @@ bool isLeap(short y)
     return ((y % 400 == 0) || (y % 4 == 0 && y % 100 != 0));
 }
 
-short numberOfDaysInMonth(short y, short m = 2)
+short numberOfDaysInMonth(short y, short m )
 {
+    //month == 1 or month == 3 or month == 5 or month == 7 or month == 8 or month == 10 or month == 12:
     if (m == 2)
         return (isLeap(y) == true) ? 29 : 28;
-    else
-        return 30;
+    else if(m==1 || m==3 || m==5 || m==7 || m==8 || m==10 || m==12) return 31;
+    else return 30;
+        
 }
 
 int hoursInMonth(short y)
 {
-    return 24 * numberOfDaysInMonth(y);
+    return 24 * numberOfDaysInMonth(y,m);
 }
 
 int MinInMonth(short y)
 {
-    return 60 * hoursInMonth(y);
+    return 60 * hoursInMonth(y,m);
 }
 
 int secondsInMonth(short y)
 {
-    return MinInMonth(y) * 60;
+    return MinInMonth(y,m) * 60;
 }
 
 int main()
@@ -37,9 +39,9 @@ int main()
     short m = enter_postive_number("\nenter m: ");
 
     cout<<"the number of days in month is: "<<numberOfDaysInMonth(y,m)<<endl;
-     cout<<"the number of hours in month is: "<<hoursInMonth(y)<<endl;
-     cout<<"the number of min in month is: "<<MinInMonth(y)<<endl;
-     cout<<"the number of seconds is: "<<secondsInMonth(y)<<endl;
+     cout<<"the number of hours in month is: "<<hoursInMonth(y,m)<<endl;
+     cout<<"the number of min in month is: "<<MinInMonth(y,m)<<endl;
+     cout<<"the number of seconds is: "<<secondsInMonth(y,m)<<endl;
 
 
 

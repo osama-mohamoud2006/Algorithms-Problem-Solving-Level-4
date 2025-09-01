@@ -1,6 +1,5 @@
 #include <iostream>
 #include <string>
-#include <cmath>
 #include "E:\projects\my library\AllStuff.h"
 using namespace std;
 using namespace AllStuff;

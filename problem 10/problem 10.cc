@@ -39,5 +39,6 @@ int main()
     short d = enter_postive_number("\nenter d: ");
     short m = enter_postive_number("\nenter m: ");
     short y = enter_postive_number("\nenter y: ");
-    cout<<TotalDaysSinceTheD(y,m,d)<<endl;
+    cout<<"\nNumber of days from begining of the year is: "<<TotalDaysSinceTheD(y,m,d)<<endl;
+
 }

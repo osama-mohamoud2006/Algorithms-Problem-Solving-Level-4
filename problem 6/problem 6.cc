@@ -10,7 +10,10 @@ bool isLeap(short y){
 short NumberOfDaysInMonth(short y, short m){
 
     if (m<1 || 12<m) return 0; 
-    return (m==2)?(isLeap(y)==true)?  29 : 28 : (m==1 || m==3 || m==5 || m==7 || m==8 || m==10 || m==12) ? 31 : 30;
+    // return (m==2)?((isLeap(y)==true)?  29 : 28) : (m==1 || m==3 || m==5 || m==7 || m==8 || m==10 || m==12) ? 31 : 30;
+
+    short arr[13]={0,31,28,31,30,31,30,31,31,30,31,30,31};
+    return  (m==2)?((isLeap(y)==true)?  29 : 28):arr[m];
 }
 
 int main(){

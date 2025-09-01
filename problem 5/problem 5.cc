@@ -10,6 +10,7 @@ bool isLeap(short y)
 
 short numberOfDaysInMonth(short y, short m)
 {
+    if(m<1 || m>12) return 0 ;
     if (m == 2)
         return (isLeap(y) == true) ? 29 : 28;
 
@@ -20,7 +21,7 @@ short numberOfDaysInMonth(short y, short m)
     for (short n : arrIs31D)
     {
         if (n == m)
-            return 30;
+            return 31;
     }
 
     return 30;

@@ -1,0 +1,21 @@
+[33m6debdf1[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain[m[33m, [m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m)[m HEAD@{0}: reset: moving to origin/main
+[33mc5b0f62[m HEAD@{1}: rebase (abort): returning to refs/heads/main
+[33mc5b0f62[m HEAD@{2}: rebase (abort): returning to refs/heads/main
+[33m419f31c[m HEAD@{3}: commit: Ignore executables
+[33m81249a9[m HEAD@{4}: rebase (continue): Auto commit: 2025-09-01 13:46:15
+[33mf666ac7[m HEAD@{5}: rebase (continue): Auto commit: 2025-09-01 13:37:43
+[33mf2d910b[m HEAD@{6}: commit: Auto commit: 2025-09-01 14:35:37
+[33mc5b0f62[m HEAD@{7}: checkout: moving from 6debdf1abad99a155091a099efbd532273bffa3b to main
+[33m6debdf1[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain[m[33m, [m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m)[m HEAD@{8}: pull origin main --rebase (start): checkout 6debdf1abad99a155091a099efbd532273bffa3b
+[33mc5b0f62[m HEAD@{9}: rebase (abort): returning to refs/heads/main
+[33m7276162[m HEAD@{10}: commit: Auto commit: 2025-09-01 14:32:33
+[33m31c8a7b[m HEAD@{11}: commit: Auto commit: 2025-09-01 14:31:50
+[33me9d64a1[m HEAD@{12}: commit: Auto commit: 2025-09-01 14:24:41
+[33m7129632[m HEAD@{13}: commit: Auto commit: 2025-09-01 14:14:12
+[33m6debdf1[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain[m[33m, [m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m)[m HEAD@{14}: pull origin main --rebase (start): checkout 6debdf1abad99a155091a099efbd532273bffa3b
+[33mc5b0f62[m HEAD@{15}: commit: Auto commit: 2025-09-01 13:46:15
+[33me9ddb84[m HEAD@{16}: commit: Auto commit: 2025-09-01 13:37:43
+[33mf420f1b[m HEAD@{17}: commit: Auto commit: 2025-08-31 20:55:40
+[33mdee2f59[m HEAD@{18}: commit: Auto commit: 2025-08-31 20:50:12
+[33m00909b5[m HEAD@{19}: Branch: renamed refs/heads/master to refs/heads/main
+[33m00909b5[m HEAD@{21}: commit (initial): first commit

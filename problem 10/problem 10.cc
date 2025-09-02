@@ -11,13 +11,9 @@ bool isLeap(short y)
     return ((y % 400 == 0) || (y % 4 == 0 && y & 100 != 0));
 }
 
-short NumberOfDaysInMonth(short y, short m)
+bool isLeap(short y)
 {
-
-    if (m < 1 || 12 < m)
-        return 0;
-    short arr[13] = {0, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
-    return (m == 2) ? ((isLeap(y) == true) ? 29 : 28) : arr[m];
+    return ((y % 400 == 0) || (y % 4 == 0 && y & 100 != 0));
 }
 
 int TotalDaysSinceTheD(short y, short m, short d)

@@ -46,22 +46,33 @@ bool isLastDayInMonth(stdate date)
 
 bool isLastMonthInYear(stdate date)
 {
-    return (date.m == 12) ;
+    return (date.m == 12);
+}
+
+stdate dateAfterAddingOneDay(stdate date)
+{
+
+    if (isLastDayInMonth(date) == true)
+    {
+        date.d = 1; // rest day 1
+
+        if (isLastMonthInYear(date) == true) // 1/1
+        {
+            date.m = 1;
+            date.y = date.y + 1;
+        }
+        else date.m++;
+    }
+    else
+    {
+        date.d = date.d + 1;
+    }
+    return date;
 }
 
 int main()
 {
 
-    stdate date = FillDate();
-    if (isLastDayInMonth(date))
-    {
-        cout << "yes " << date.d << " is the last day in the month!\n";
-    }
-    else
-    {
-
-        cout << "NO" << endl;
-    }
-
-    (isLastMonthInYear(date))?cout<<"yes this is the last month! \n":cout<<"No this isn't the last month!\n";
+    stdate date = dateAfterAddingOneDay(FillDate());
+    cout << date.d << "/" << date.m << "/" << date.y << endl;
 }

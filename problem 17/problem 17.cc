@@ -18,8 +18,8 @@ stdate FillDate()
 {
 
     stdate d;
-    static short c =1;
-    cout<<"\ndate"<<c<<endl;
+    static short c = 1;
+    cout << "\ndate" << c << endl;
     d.d = enter_postive_number("enter d: ");
     d.m = enter_postive_number("\nenter m: ");
     d.y = enter_postive_number("\nenter y: ");
@@ -33,6 +33,13 @@ bool isLeap(short y)
     return ((y % 400 == 0) || (y % 4 == 0 && y % 100 != 0));
 }
 
+bool isDate1LessThanDate2(stdate date, stdate date2)
+{
+    return (date.y < date2.y) ? true : (date.y == date2.y) ? (date.m < date2.m) ? true : (date.m == date2.m) ? (date.d < date2.d) ? true : false
+                                                                                                             : false
+                                                           : false;
+}
+
 short NumberOfDaysInMonth(short y, short m)
 {
 
@@ -42,49 +49,53 @@ short NumberOfDaysInMonth(short y, short m)
     return (m == 2) ? ((isLeap(y) == true) ? 29 : 28) : arr[m];
 }
 
-short thePassedDays(stdate date)
+bool isLastDayInMonth(stdate date)
 {
-    short totalDaysMonths = 0;
-
-    for (int i = 1; i <= date.m - 1; i++)
-    {
-        totalDaysMonths += NumberOfDaysInMonth(date.y, i);
-    }
-    return totalDaysMonths + date.d;
+    return (NumberOfDaysInMonth(date.y, date.m) == date.d);
 }
 
-// check if date 2 is bigger than date 1
-bool isDate1lLessthanDate2(stdate date1, stdate date2)
+bool isLastMonthInYear(stdate date)
 {
-    return (thePassedDays(date1) < thePassedDays(date2));
+    return (date.m == 12);
 }
 
-short diffBetween2days(stdate date1, stdate date2, bool endDay =false)
+stdate dateAfterAddingOneDay(stdate date)
 {
-    short diff = 0;
-    if (isDate1lLessthanDate2(date1, date2) == true)
+
+    if (isLastDayInMonth(date) == true)
     {
-        diff = thePassedDays(date2) - thePassedDays(date1);
-        if (endDay == true)
+        date.d = 1; // rest day 1
+
+        if (isLastMonthInYear(date) == true) // 1/1
         {
-            diff+=1;
+            date.m = 1;
+            date.y = date.y + 1;
         }
+        else
+            date.m++;
     }
     else
     {
-        cout << "date 1 should less than date2" << endl;
-        return 0;
+        date.d = date.d + 1;
     }
+    return date;
+}
 
-    return diff;
+int diffBetween2days(stdate date1, stdate date2, bool endDay = false)
+{
+    int days =0;
+    while (isDate1LessThanDate2(date1, date2))
+    {
+        days++;
+        date1=dateAfterAddingOneDay(date1);
+    }
+    return (endDay==false)? days : ++days;
 }
 
 int main()
 {
     stdate date1 = FillDate();
     stdate date2 = FillDate();
-
-    cout<<"\ndifference is: "<<diffBetween2days(date1,date2)<<" day"<<endl;
-     cout<<"difference is(including end day): "<<diffBetween2days(date1,date2,true)<<" day"<<endl;
-
+    cout<<"diff between 2dates: "<<diffBetween2days(date1,date2)<<" day"<<endl;
+      cout<<"diff between 2dates(with end day): "<<diffBetween2days(date1,date2,true)<<" day"<<endl;
 }

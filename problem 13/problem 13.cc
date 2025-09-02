@@ -14,7 +14,7 @@ struct stdate
   short d = 0;
 };
 
-bool isDate1EqualsDate2(stdate date, stdate date2)
+bool isDate1LessThanDate2(stdate date, stdate date2)
 {
   return (date.y < date2.y) ? true : (date.y == date2.y) ? (date.m < date2.m) ? true : (date.m == date2.m) ? (date.d < date2.d) ? true : false
                                                                                                            : false
@@ -36,5 +36,5 @@ stdate FillDate()
 int main()
 {
 
-  (isDate1EqualsDate2(FillDate(), FillDate()) == true) ? cout << "yes,date 1 is bigger than date2" : cout << "NO,date 1 is less than date2";
+  (isDate1LessThanDate2(FillDate(), FillDate()) == true) ? cout << "yes,date 1 is bigger than date2" : cout << "NO,date 1 is less than date2";
 }

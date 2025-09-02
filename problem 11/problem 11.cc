@@ -31,12 +31,49 @@ short DayUntillDate(short y, short m, short d)
     return totalDays + d;
 }
 
+struct date
+{
+    short y;
+    short m;
+    short d;
+};
 
+date ReturnDate(short NOdayUntillDate, short y)
+{
+    // NOdayUntillDate is the number of days from 1/1 untill your day
+    date data;
+    data.y = y; // the year
+
+    short RemainingDays = NOdayUntillDate; // will increment it to get the no.of days
+    short m = 1;
+    while (true)
+    {
+        short monthDays = NumberOfDaysInMonth(y, m); // the num of days in month
+
+        if (RemainingDays > monthDays)
+        {
+            RemainingDays -= monthDays;
+            m++;
+        }
+        else
+        {
+            data.m = m;
+            data.d = RemainingDays;
+            break;
+        }
+    }
+    return data ; 
+}
 
 int main()
 {
-     short d = enter_postive_number("\nenter d: ");
+    short d = enter_postive_number("\nenter d: ");
     short m = enter_postive_number("\nenter m: ");
     short y = enter_postive_number("\nenter y: ");
-    cout<<"\nNumber of days from begining of the year is: "<<DayUntillDate(y,m,d)<<endl;
+    cout << "\nNumber of days from begining of the year is: " << DayUntillDate(y, m, d) << endl;
+
+    date data ; 
+    data = ReturnDate(DayUntillDate(y, m, d),y);
+       cout << data.d << "/" << data.m << "/" << data.y << endl;
+
 }

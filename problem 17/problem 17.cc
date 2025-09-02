@@ -18,9 +18,12 @@ stdate FillDate()
 {
 
     stdate d;
-    d.d = enter_postive_number("\nenter d: ");
+    static short c =1;
+    cout<<"\ndate"<<c<<endl;
+    d.d = enter_postive_number("enter d: ");
     d.m = enter_postive_number("\nenter m: ");
     d.y = enter_postive_number("\nenter y: ");
+    c++;
 
     return d;
 }
@@ -81,7 +84,7 @@ int main()
     stdate date1 = FillDate();
     stdate date2 = FillDate();
 
-    cout<<"difference is: "<<diffBetween2days(date1,date2)<<" day"<<endl;
+    cout<<"\ndifference is: "<<diffBetween2days(date1,date2)<<" day"<<endl;
      cout<<"difference is(including end day): "<<diffBetween2days(date1,date2,true)<<" day"<<endl;
 
 }

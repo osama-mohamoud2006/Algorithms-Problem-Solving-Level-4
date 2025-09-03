@@ -93,86 +93,19 @@ stdate AddXdays(short days, stdate date)
 
 stdate AddOneWeek(stdate date)
 {
-    // if (isLastDayInMonth(date))
-    // { //  30/1/2021
+    date.d += 7;
+    int dayOFmonth = NumberOfDaysInMonth(date.y, date.m);
 
-    //     date.d = 7;
-    //     date.m++; // 7/2
-
-    //     if (isLastMonthInYear(date))
-    //     {               // 31/12 -- >> 7/1
-    //         date.m = 1; // month
-    //         date.d = 7; // day
-    //     }
-    // }
-
-    // else if (isLastDayInMonth(date) == 30 ||28 || 29 && date.d ==NumberOfDaysInMonth(date.y, date.m)) // 2 ,4
-    // {
-    //     date.d = 6;
-    //     date.m++;
-    // }
-    // else
-    // {
-    //     if (isLastMonthInYear(date))
-    //     {
-    //         date.d = 6;
-    //         date.m = 1;
-    //         date.y++;
-    //         return date ;
-    //     }
-    //     date.d += 7;
-    // }
-
-    if (!isLastDayInMonth(date))
+    if (date.d > dayOFmonth)
     {
-        int beforeAddWeek = date.d;
-        date.d += 7; // if the day isn't the last day
-
-        if (date.d > NumberOfDaysInMonth(date.y, date.m)) // you exceed the month
-        {
-            if (!isLastMonthInYear(date))
-            {
-                date.m++;
-                short restMonthDays = date.d - beforeAddWeek;
-
-                short finalAdd = beforeAddWeek;
-                for (short i = 1; i <= restMonthDays; i++)
-                {
-                    if (finalAdd <= NumberOfDaysInMonth(date.y, date.m))
-                    {
-                        finalAdd++;
-                    }
-                    else
-                    {
-                        finalAdd=7-i;
-                        break;
-                    }
-                }
-            
-                date.d= finalAdd;
-            }
-            else if (isLastDayInMonth(date))
-            {
-                 date.d = 7;
-                date.y++;
-                date.m = 1;
-                return date;
-            }
-        }
+        date.m++;
+        date.d -= dayOFmonth;
     }
 
-    else if (isLastDayInMonth(date))
+    if (date.m > 12)
     {
-        date.d = 7; // if is the last day
-        if (isLastMonthInYear(date))
-        {
-            date.m = 1;
-            date.d = 7;
-            date.y++;
-            return date;
-        }
-        else
-            date.m++;
+        date.m = 1;
+        date.y++;
     }
 
     return date;

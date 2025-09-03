@@ -93,16 +93,20 @@ stdate dateAfterAddingOneDay(stdate date)
 
 stdate dateAfterMinusOneDay(stdate date)
 {
-    if (date.d == 1) // 1/1/2025
+    if (isFirstMonthInYear(date)) // 1/1/2022 --> 31/12/2021
     {
-        if (isFirstMonthInYear(date)) // 1
-        {
-            date.m = 12;
-            date.y -= 1;
-        }
-        // 31/
-        if(isFirstMonthInYear(date)!=true)date.m -= 1;
+        date.m = 12;
+        date.y -= 1;
         date.d = NumberOfDaysInMonth(date.y, date.m); // from 1 -->31
+        return date;
+    }
+
+    if (date.d == 1) // 1/3/2022
+    {
+       
+       
+        date.m -= 1; //2
+        date.d = NumberOfDaysInMonth(date.y, date.m); //  31 /2/2022
     }
     else
     {
@@ -111,25 +115,25 @@ stdate dateAfterMinusOneDay(stdate date)
     return date;
 }
 
-int diffBetween2days(stdate date1, stdate date2, bool endDay = false)
+int diffBetween2days(stdate date1, stdate date2, bool case2 = false)
 {
     int days = 0;
-    while (true)
+    while (!Is2DatesAreEqual(date1, date2))
     {
         if (isDate1LessThanDate2(date1, date2) != true)
         { 
             days--;
             date1 = dateAfterMinusOneDay(date1);
            
-            if (Is2DatesAreEqual(date1, date2))
-                break;
+           
         }
-        days++;
-        date1 = dateAfterAddingOneDay(date1);
-        if (Is2DatesAreEqual(date1, date2))
-            break;
+        else {
+            days++;
+            date1 = dateAfterAddingOneDay(date1);
+           
+        }
     }
-    return (endDay == false) ? days : ++days;
+    return days;
 }
 
 int main()

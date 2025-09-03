@@ -36,8 +36,8 @@ bool isLeap(short y)
 bool isDate1LessThanDate2(stdate date, stdate date2)
 {
     return (date.y < date2.y) ? true : (date.y == date2.y) ? (date.m < date2.m) ? true : (date.m == date2.m) ? (date.d < date2.d) ? true : false
-        : false
-        : false;
+                                                                                                             : false
+                                                           : false;
 }
 
 bool Is2DatesAreEqual(stdate date1, stdate date2)
@@ -50,7 +50,7 @@ short NumberOfDaysInMonth(short y, short m)
 
     if (m < 1 || 12 < m)
         return 0;
-    short arr[13] = { 0, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };
+    short arr[13] = {0, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
     return (m == 2) ? ((isLeap(y) == true) ? 29 : 28) : arr[m];
 }
 
@@ -91,49 +91,41 @@ stdate dateAfterAddingOneDay(stdate date)
     return date;
 }
 
-stdate dateAfterMinusOneDay(stdate date)
+void swapDates(stdate &date1, stdate &date2)
 {
-    if (isFirstMonthInYear(date)) // 1/1/2022 --> 31/12/2021
-    {
-        date.m = 12;
-        date.y -= 1;
-        date.d = NumberOfDaysInMonth(date.y, date.m); // from 1 -->31
-        return date;
-    }
+    stdate temp;
+    temp.d = date1.d;
+    temp.m = date1.m;
+    temp.y = date1.y;
 
-    if (date.d == 1) // 1/3/2022
-    {
-       
-       
-        date.m -= 1; //2
-        date.d = NumberOfDaysInMonth(date.y, date.m); //  31 /2/2022
-    }
-    else
-    {
-        date.d -= 1;
-    }
-    return date;
+    date1.d = date2.d;
+    date1.m = date2.m;
+    date1.y = date2.y;
+
+    date2.d = temp.d;
+    date2.m = date1.m;
+    date2.y = date1.y;
 }
 
 int diffBetween2days(stdate date1, stdate date2)
 {
+    int FlagedAsD1IsnotLessD2 = 1;
     int days = 0;
     while (!Is2DatesAreEqual(date1, date2))
     {
-        if (isDate1LessThanDate2(date1, date2) != true)
-        { 
-            days--;
-            date1 = dateAfterMinusOneDay(date1);
-           
-           
+
+        if (!isDate1LessThanDate2(date1, date2))
+        {
+            swapDates(date1, date2);
+            FlagedAsD1IsnotLessD2 = -1;
         }
-        else {
+        else
+        {
             days++;
             date1 = dateAfterAddingOneDay(date1);
-           
         }
     }
-    return days;
+    return days * FlagedAsD1IsnotLessD2;
 }
 
 int main()

@@ -111,6 +111,15 @@ stdate AddOneWeek(stdate date)
     return date;
 }
 
+stdate AddXWeeks(short x, stdate date)
+{
+    for (int i = 1; i <= x; i++)
+    {
+        date = AddOneWeek(date);
+    }
+    return date;
+}
+
 string print_date(stdate date)
 {
     return (to_string(date.d) + "/" + to_string(date.m) + "/" + to_string(date.y));
@@ -119,12 +128,21 @@ string print_date(stdate date)
 int main()
 {
     stdate date = FillDate();
-    // short days = enter_postive_number("enter d to add: "); // to enter days to add
-
+    short x = enter_postive_number("enter d to add: "); // to enter days to add
+                                                        // 1
     date = dateAfterAddingOneDay(date);
-    cout << "01 Adding one day is: " << print_date(date) << endl;
-    // date = AddXdays(days, date);
-    // cout << "02 Adding 10 days is: " << print_date(date) << endl;
+    cout << "\n01 Adding one day is: " << print_date(date) << endl;
+    // 2
+    date = AddXdays(x, date);
+    cout << "\n02 Adding" << x << " days is: " << print_date(date) << endl;
+    // 3
     date = AddOneWeek(date);
-    cout << "03 Adding one week is: " << print_date(date) << endl;
+    cout << "\n03 Adding one week is: " << print_date(date) << endl;
+    // 4
+    x = enter_postive_number("enter weeks to add: "); // to enter weeks to add
+    date = AddXWeeks(x, date);
+    cout << "\n04 Adding " << x << " weeks is: " << print_date(date) << endl;
+
+
+    
 }

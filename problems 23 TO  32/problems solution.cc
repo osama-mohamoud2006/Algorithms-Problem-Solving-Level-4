@@ -209,55 +209,52 @@ string print_date(stdate date)
 int main()
 {
     stdate date = FillDate();
-    short x = enter_postive_number("enter d to add: "); // to enter days to add
                                                         // 1
     date = dateAfterAddingOneDay(date);
     cout << "\n01 Adding one day is: " << print_date(date) << endl;
     // 2
-    date = AddXdays(x, date);
-    cout << "\n02 Adding " << x << " days is: " << print_date(date) << endl;
+    date = AddXdays(10, date);
+    cout << "\n02 Adding " << 10 << " days is: " << print_date(date) << endl;
     // 3
     date = AddOneWeek(date);
     cout << "\n03 Adding one week is: " << print_date(date) << endl;
     // 4
-    x = enter_postive_number("enter weeks to add: "); // to enter weeks to add
-    date = AddXWeeks(x, date);
-    cout << "\n04 Adding " << x << " weeks is: " << print_date(date) << endl;
+   
+    date = AddXWeeks(10, date);
+    cout << "\n04 Adding " << 10<< " weeks is: " << print_date(date) << endl;
     // 5
     date = AddOneMonth(date);
     cout << "\n05 Adding one month is : " << print_date(date) << endl;
+
     // 6
-    x = enter_postive_number("enter month to add: "); // to enter months to add
-    date = AddXMonths(x, date);
-    cout << "\n06 Adding " << x << " month: " << print_date(date) << endl;
+    date = AddXMonths(5, date);
+    cout << "\n06 Adding " << 5 << " month: " << print_date(date) << endl;
 
     // 7
     date = AddOneYear(date);
     cout << "\n07 Adding one year is: " << print_date(date) << endl;
 
     // 8
-    x = enter_postive_number("enter year to add: "); // to enter months to add
-    date = AddXYears(x, date);
-    cout << "\n08 Adding " << x << " years is: " << print_date(date) << endl;
+    
+    date = AddXYears(10, date);
+    cout << "\n08 Adding " <<10 << " years is: " << print_date(date) << endl;
 
     // 9
-    x = enter_postive_number("enter year to add: "); // to enter years to add
-    date = AddXYears2(x, date);
-    cout << "\n09 Adding(faster) " << x << " years is: " << print_date(date) << endl;
+    date = AddXYears2(10, date);
+    cout << "\n09 Adding(faster) " << 10 << " years is: " << print_date(date) << endl;
 
     // 10
     date = AddOneDecade(date);
     cout << "\n10 Adding one decade is: " << print_date(date) << endl;
 
     // 11
-    x = enter_postive_number("enter decades to add: "); // to enter decades to add
-    date = AdddXDecade(x, date);
-    cout << "\n11 Adding " << x << " decades is: " << print_date(date) << endl;
+    
+    date = AdddXDecade(10, date);
+    cout << "\n11 Adding " << 10 << " decades is: " << print_date(date) << endl;
 
     // 12
-    x = enter_postive_number("enter decades to add: "); // to enter decades to add
-    date = AddXDecade2(x, date);
-    cout << "\n12 Adding(another method) " << x << " decades is: " << print_date(date) << endl;
+    date = AddXDecade2(10, date);
+    cout << "\n12 Adding(another method) " << 10 << " decades is: " << print_date(date) << endl;
 
     // 13
     date = AddOneCentury(date);
@@ -266,4 +263,6 @@ int main()
     // 14
     date = AddOneMillenuim(date);
     cout << "\n14 Adding one Millenuim is:" << print_date(date) << endl;
+
+    cout<<endl;
 }

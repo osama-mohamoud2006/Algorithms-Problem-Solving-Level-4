@@ -1,0 +1,8 @@
+﻿  debugging p19.cpp
+E:\projects\my library\logic_stuff.h(117,14): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+  (compiling source file 'debugging%20p19.cpp')
+  
+E:\projects\c++ course\08 - Algorithms & Problem Solving Level 4\debugging p19\debugging p19.cpp(23,31): warning C4244: '=': conversion from 'double' to 'short', possible loss of data
+E:\projects\c++ course\08 - Algorithms & Problem Solving Level 4\debugging p19\debugging p19.cpp(24,31): warning C4244: '=': conversion from 'double' to 'short', possible loss of data
+E:\projects\c++ course\08 - Algorithms & Problem Solving Level 4\debugging p19\debugging p19.cpp(25,31): warning C4244: '=': conversion from 'double' to 'short', possible loss of data
+  debugging p19.vcxproj -> E:\projects\c++ course\08 - Algorithms & Problem Solving Level 4\debugging p19\x64\Debug\debugging p19.exe

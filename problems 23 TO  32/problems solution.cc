@@ -258,4 +258,11 @@ int main()
     x = enter_postive_number("enter decades to add: "); // to enter decades to add
     date = AddXDecade2(x, date);
     cout << "\n12 Adding(another method) " << x << " decades is: " << print_date(date) << endl;
+
+    //13
+    date = AddOneCentury(date);
+    cout<<"\n13 Adding one century is:"<<print_date(date) << endl;
+
+    //14 
+
 }

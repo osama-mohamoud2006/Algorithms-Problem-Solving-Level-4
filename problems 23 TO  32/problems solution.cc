@@ -93,33 +93,86 @@ stdate AddXdays(short days, stdate date)
 
 stdate AddOneWeek(stdate date)
 {
-    if (isLastDayInMonth(date))
-    { //  30/1/2021
+    // if (isLastDayInMonth(date))
+    // { //  30/1/2021
 
-        date.d = 7;
-        date.m++; // 7/2
+    //     date.d = 7;
+    //     date.m++; // 7/2
 
-        if (isLastMonthInYear(date))
-        {               // 31/12 -- >> 7/1
-            date.m = 1; // month
-            date.d = 7; // day
+    //     if (isLastMonthInYear(date))
+    //     {               // 31/12 -- >> 7/1
+    //         date.m = 1; // month
+    //         date.d = 7; // day
+    //     }
+    // }
+
+    // else if (isLastDayInMonth(date) == 30 ||28 || 29 && date.d ==NumberOfDaysInMonth(date.y, date.m)) // 2 ,4
+    // {
+    //     date.d = 6;
+    //     date.m++;
+    // }
+    // else
+    // {
+    //     if (isLastMonthInYear(date))
+    //     {
+    //         date.d = 6;
+    //         date.m = 1;
+    //         date.y++;
+    //         return date ;
+    //     }
+    //     date.d += 7;
+    // }
+
+    if (!isLastDayInMonth(date))
+    {
+        int beforeAddWeek = date.d;
+        date.d += 7; // if the day isn't the last day
+
+        if (date.d > NumberOfDaysInMonth(date.y, date.m)) // you exceed the month
+        {
+            if (!isLastMonthInYear(date))
+            {
+                date.m++;
+                short restMonthDays = date.d - beforeAddWeek;
+
+                short finalAdd = beforeAddWeek;
+                for (short i = 1; i <= restMonthDays; i++)
+                {
+                    if (finalAdd <= NumberOfDaysInMonth(date.y, date.m))
+                    {
+                        finalAdd++;
+                    }
+                    else
+                    {
+                        finalAdd=7-i;
+                        break;
+                    }
+                }
+            
+                date.d= finalAdd;
+            }
+            else if (isLastDayInMonth(date))
+            {
+                 date.d = 7;
+                date.y++;
+                date.m = 1;
+                return date;
+            }
         }
     }
 
-    else if (NumberOfDaysInMonth(date.y, date.m) != 30) // 2 ,4
+    else if (isLastDayInMonth(date))
     {
-        date.d = 6;
-        date.m++;
-    }
-    else
-    {
+        date.d = 7; // if is the last day
         if (isLastMonthInYear(date))
         {
-            date.d = 6;
             date.m = 1;
+            date.d = 7;
             date.y++;
+            return date;
         }
-        date.d += 7;
+        else
+            date.m++;
     }
 
     return date;
@@ -133,12 +186,12 @@ string print_date(stdate date)
 int main()
 {
     stdate date = FillDate();
-    //short days = enter_postive_number("enter d to add: "); // to enter days to add
+    // short days = enter_postive_number("enter d to add: "); // to enter days to add
 
     date = dateAfterAddingOneDay(date);
     cout << "01 Adding one day is: " << print_date(date) << endl;
-    //date = AddXdays(days, date);
-   // cout << "02 Adding 10 days is: " << print_date(date) << endl;
+    // date = AddXdays(days, date);
+    // cout << "02 Adding 10 days is: " << print_date(date) << endl;
     date = AddOneWeek(date);
-    cout<<"03 Adding one week is: "<< print_date(date) << endl;
+    cout << "03 Adding one week is: " << print_date(date) << endl;
 }

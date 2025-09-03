@@ -103,27 +103,24 @@ void swapDates(stdate &date1, stdate &date2)
     date1.y = date2.y;
 
     date2.d = temp.d;
-    date2.m = date1.m;
-    date2.y = date1.y;
+    date2.m = temp.m;
+    date2.y = temp.y;
 }
 
 int diffBetween2days(stdate date1, stdate date2)
 {
     int FlagedAsD1IsnotLessD2 = 1;
     int days = 0;
-    while (!Is2DatesAreEqual(date1, date2))
-    {
 
-        if (!isDate1LessThanDate2(date1, date2))
-        {
-            swapDates(date1, date2);
-            FlagedAsD1IsnotLessD2 = -1;
-        }
-        else
-        {
-            days++;
-            date1 = dateAfterAddingOneDay(date1);
-        }
+    if (!isDate1LessThanDate2(date1, date2))
+    {
+        swapDates(date1, date2);
+        FlagedAsD1IsnotLessD2 = -1;
+    }
+    while (isDate1LessThanDate2(date1, date2))
+    {
+        days++;
+        date1 = dateAfterAddingOneDay(date1);
     }
     return days * FlagedAsD1IsnotLessD2;
 }

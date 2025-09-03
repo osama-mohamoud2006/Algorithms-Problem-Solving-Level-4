@@ -209,7 +209,8 @@ string print_date(stdate date)
 int main()
 {
     stdate date = FillDate();
-                                                        // 1
+    
+     // 1
     date = dateAfterAddingOneDay(date);
     cout << "\n01 Adding one day is: " << print_date(date) << endl;
     // 2

@@ -191,8 +191,8 @@ stdate AddXDecade2(short x, stdate date)
 
 stdate AddOneCentury(stdate date)
 {
-    date.y+=100;
-    return date; 
+    date.y += 100;
+    return date;
 }
 
 stdate AddOneMillenuim(stdate date)
@@ -259,10 +259,11 @@ int main()
     date = AddXDecade2(x, date);
     cout << "\n12 Adding(another method) " << x << " decades is: " << print_date(date) << endl;
 
-    //13
+    // 13
     date = AddOneCentury(date);
-    cout<<"\n13 Adding one century is:"<<print_date(date) << endl;
+    cout << "\n13 Adding one century is:" << print_date(date) << endl;
 
-    //14 
-
+    // 14
+    date = AddOneMillenuim(date);
+    cout << "\n14 Adding one Millenuim is:" << print_date(date) << endl;
 }

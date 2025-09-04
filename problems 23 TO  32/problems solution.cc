@@ -93,9 +93,9 @@ stdate AddXdays(short days, stdate date)
 
 stdate AddOneWeek(stdate date)
 {
-    //method1
-    // date.d += 7;
-    // int dayOFmonth = NumberOfDaysInMonth(date.y, date.m);
+    // method1
+    //  date.d += 7;
+    //  int dayOFmonth = NumberOfDaysInMonth(date.y, date.m);
 
     // if (date.d > dayOFmonth)
     // {
@@ -108,7 +108,7 @@ stdate AddOneWeek(stdate date)
     //     date.m = 1;
     //     date.y++;
     // }
-
+    // method 2
     for (int i = 1; i <= 7; i++)
     {
         date = dateAfterAddingOneDay(date);
@@ -127,9 +127,23 @@ stdate AddXWeeks(short x, stdate date)
 
 stdate AddOneMonth(stdate date)
 {
-    date.m++;
-    if (date.m > 12)
+    if (isLastMonthInYear(date))
+    {
+        date.y++;
         date.m = 1;
+    }
+    else
+    {
+        date.m++;
+    }
+    // if the days exceed the actual days in month
+    // ex: 31/1 --> 31/2 (fatal mistake)
+    // 31 > 28 ||29 , so will make the days the number of total days in month
+    short ActualDaysInMonth = NumberOfDaysInMonth(date.y, date.m);
+    if (date.d > ActualDaysInMonth)
+    {
+        date.d=ActualDaysInMonth ; 
+    }
     return date;
 }
 

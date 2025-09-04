@@ -44,7 +44,7 @@ short DayOrder(short year, short month, short day)
 
 short DayOrder(stdate date)
 {
-  return DayOrder(date.y,date.m,date.d);
+    return DayOrder(date.y, date.m, date.d);
 }
 
 string dayAccordingToDayOrder(short weekOrder)
@@ -83,6 +83,8 @@ bool isBussinessDay(stdate date)
     return !isItWeekEnd(date);
 }
 
+
+
 short DaysUntillEndOfWeek(stdate date)
 {
     short d = 0;
@@ -93,7 +95,7 @@ short DaysUntillEndOfWeek(stdate date)
     }
     return d;
 
-//    return 6-DayOrder(date); // 6 is thu bcz it is the end of the week
+    //    return 6-DayOrder(date); // 6 is thu bcz it is the end of the week
 }
 
 short DaysUntillTheEndOfMonth(stdate date)
@@ -141,6 +143,18 @@ stdate dateAfterAddingOneDay(stdate date)
     return date;
 }
 
+
+short getDiffBetween2dates(stdate date1, stdate date2)
+{
+    short days = 0;
+    while(isDate1LessThanDate2(date1,date2)){
+        days++;
+        date1=dateAfterAddingOneDay(date1);
+    }
+    return days;
+}
+
+
 stdate TheDateThatIndcatingThEndOfYear(stdate date)
 {
     date.m = 12;
@@ -152,11 +166,11 @@ short DayUntillEndOfYear(stdate date)
 {
     stdate endOfYear = TheDateThatIndcatingThEndOfYear(date);
     short d = 0;
-    while (isDate1LessThanDate2(date, endOfYear))
-    {
-        d++;
-        date = dateAfterAddingOneDay(date);
-    }
+    // while (isDate1LessThanDate2(date, endOfYear))
+    // {
+    //     d++;
+    //     date = dateAfterAddingOneDay(date);
+    // }
     return d;
 }
 

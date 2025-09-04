@@ -56,19 +56,53 @@ short DayOrder(short year, short month, short day)
     return (day + y + ((y / 4)) - ((y / 100)) + ((y / 400)) + (((31 * m) / 12))) % 7;
 }
 
+short DayOrder(stdate date)
+{
+    short a = ((14 - date.m) / 12);
+    short y = date.y - a;
+    short m = date.m + 12 * a - 2;
+
+    return (date.d + y + ((y / 4)) - ((y / 100)) + ((y / 400)) + (((31 * m) / 12))) % 7;
+}
+
+string dayAccordingToDayOrder(short weekOrder)
+{
+    string days[] = {"Sun", "Mon", "Tue", "Wed", "Thu", "Fri"};
+    return days[weekOrder];
+}
+
 stdate LocalTime()
 {
     stdate date;
     time_t epoch_time = time(0);
     tm *local = localtime(&epoch_time);
 
-    date.y = (local->tm_yday) + 1900;
+    date.y = local->tm_year + 1900;
     date.d = local->tm_mday;
     date.m = (local->tm_mon + 1);
     return date;
 }
 
+bool isEndOfWeek(stdate date)
+{
+    // is suppose that thu is end of the week
+    return (DayOrder(date) == 4) ? true : false;
+}
+
 string print_date(stdate date)
 {
     return (to_string(date.d) + "/" + to_string(date.m) + "/" + to_string(date.y));
+}
+
+int main()
+{
+    // i suppose that thu is end of the week
+
+    // 1
+    stdate date = LocalTime();
+    cout << "\n"<<dayAccordingToDayOrder(DayOrder(date)) << ", " << print_date(date) << endl;
+
+    // 2
+    (isEndOfWeek(date)) ? cout << "today is thu so it is the end of the week!" : cout << "it isn't the end of the week!\n";
+    cout << endl;
 }

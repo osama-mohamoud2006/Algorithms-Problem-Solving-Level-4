@@ -89,6 +89,44 @@ bool isEndOfWeek(stdate date)
     return (DayOrder(date) == 4) ? true : false;
 }
 
+bool isItWeekEnd(stdate date)
+{
+    // i suppose fri is the week end
+    return (DayOrder(date) == 5) ? true : false;
+}
+
+bool isBussinessDay(stdate date)
+{
+    // if day isn't fri then it is bussiness day
+    return (DayOrder(date) != 5) ? true : false;
+}
+
+short DaysUntillEndOfWeek(stdate date)
+{
+    short d = 0;
+    while (!isEndOfWeek(date)) // thu
+    {
+        d++;
+        date.d++;
+    }
+    return d;
+}
+
+short DaysUntillTheEndOfMonth(stdate date)
+{
+    short d = 0;
+    short daysOfMonth = NumberOfDaysInMonth(date.y, date.m);
+
+    while (date.d < daysOfMonth)
+    {
+        d++;
+        date.d++;
+    }
+    return d;
+}
+
+stdate TheDateThatIndcatingThE
+
 string print_date(stdate date)
 {
     return (to_string(date.d) + "/" + to_string(date.m) + "/" + to_string(date.y));
@@ -100,9 +138,26 @@ int main()
 
     // 1
     stdate date = LocalTime();
-    cout << "\n"<<dayAccordingToDayOrder(DayOrder(date)) << ", " << print_date(date) << endl;
+    cout << "\n"
+         << dayAccordingToDayOrder(DayOrder(date)) << ", " << print_date(date) << endl;
 
     // 2
     (isEndOfWeek(date)) ? cout << "today is thu so it is the end of the week!" : cout << "it isn't the end of the week!\n";
     cout << endl;
+
+    // 3
+    (isItWeekEnd(date)) ? cout << "today is fri so it is the weekend!" : cout << "it isn't weekend !\n";
+
+    // 4
+    (isBussinessDay(date)) ? cout << "today is business day!" : cout << "it isn't business day !\n";
+
+    // 5
+    cout << "\n\ndays untill end of week : " << DaysUntillEndOfWeek(date) << " day";
+    cout << endl;
+
+    // 6
+    cout << "Days unill the end of month: " << DaysUntillTheEndOfMonth(date) << " day(s)" << endl;
+
+    //7
+
 }

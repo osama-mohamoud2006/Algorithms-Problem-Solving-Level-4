@@ -60,29 +60,37 @@ bool isFirstMonthInTheYear(stdate date)
     return (date.m == 1); // if m=1
 }
 
-stdate DecraseOneDay(stdate date)
+stdate DecreaseOneDay(stdate &date)
 {
-    short DaysInMonth = NumberOfDaysInMonth(date.y, date.m);
 
     if (isFirstMonthInTheYear(date)) // 1/1/2020 --> 31/12/2019
     {
         if (date.d == 1)
         {
-            date.d = DaysInMonth; // 31
-            date.y--;             // 2019
-            date.m = 12;          // 12
+            date.y--;                                     // 2019
+            date.m = 12;                                  // 12
+            date.d = NumberOfDaysInMonth(date.y, date.m); // 31
             return date;
         }
     }
     else if (date.d == 1) // 1/4/2020 --> 31/3/2020
     {
-        date.d = DaysInMonth; // 31
-        date.m--;             // 3
+        date.m--;                                     // 3
+        date.d = NumberOfDaysInMonth(date.y, date.m); // 31
         return date;
     }
     else
     {
         date.d--;
+    }
+    return date;
+}
+
+stdate DecreaseXDays(short x, stdate date)
+{
+    for (short i = 1; i <= x; i++)
+    {
+        date = DecreaseOneDay(date);
     }
     return date;
 }
@@ -94,8 +102,14 @@ string print_date(stdate date)
 
 int main()
 {
-    // 1
     stdate date = FillDate();
-    date = DecraseOneDay(date);
+
+    // 1
+    date = DecreaseOneDay(date);
     cout << "\n01-Substracting one day is: " << print_date(date) << endl;
+
+    // 2
+    date = DecreaseXDays(10, date);
+    cout <<"\n02-Substracting 10 days is: "<<print_date(date) << endl;
+
 }

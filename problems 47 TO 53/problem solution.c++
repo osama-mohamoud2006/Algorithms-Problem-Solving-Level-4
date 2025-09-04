@@ -134,14 +134,13 @@ short DaysUntillEndOfWeek(stdate date)
     short d = 0;
     while (!isEndOfWeek(date)) // thu
     {
-        d++;
+        d++; // count steps
         date.d++;
     }
     return d;
 
     //    return 6-DayOrder(date); // 6 is thu bcz it is the end of the week
 }
-
 
 stdate TheDateThatIndcatingThEndOfYear(stdate date)
 {

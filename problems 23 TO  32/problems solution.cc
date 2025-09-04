@@ -93,21 +93,26 @@ stdate AddXdays(short days, stdate date)
 
 stdate AddOneWeek(stdate date)
 {
-    date.d += 7;
-    int dayOFmonth = NumberOfDaysInMonth(date.y, date.m);
+    //method1
+    // date.d += 7;
+    // int dayOFmonth = NumberOfDaysInMonth(date.y, date.m);
 
-    if (date.d > dayOFmonth)
+    // if (date.d > dayOFmonth)
+    // {
+    //     date.m++;
+    //     date.d -= dayOFmonth;
+    // }
+
+    // if (date.m > 12)
+    // {
+    //     date.m = 1;
+    //     date.y++;
+    // }
+
+    for (int i = 1; i <= 7; i++)
     {
-        date.m++;
-        date.d -= dayOFmonth;
+        date = dateAfterAddingOneDay(date);
     }
-
-    if (date.m > 12)
-    {
-        date.m = 1;
-        date.y++;
-    }
-
     return date;
 }
 
@@ -209,8 +214,8 @@ string print_date(stdate date)
 int main()
 {
     stdate date = FillDate();
-    
-     // 1
+
+    // 1
     date = dateAfterAddingOneDay(date);
     cout << "\n01 Adding one day is: " << print_date(date) << endl;
     // 2
@@ -220,9 +225,9 @@ int main()
     date = AddOneWeek(date);
     cout << "\n03 Adding one week is: " << print_date(date) << endl;
     // 4
-   
+
     date = AddXWeeks(10, date);
-    cout << "\n04 Adding " << 10<< " weeks is: " << print_date(date) << endl;
+    cout << "\n04 Adding " << 10 << " weeks is: " << print_date(date) << endl;
     // 5
     date = AddOneMonth(date);
     cout << "\n05 Adding one month is : " << print_date(date) << endl;
@@ -236,9 +241,9 @@ int main()
     cout << "\n07 Adding one year is: " << print_date(date) << endl;
 
     // 8
-    
+
     date = AddXYears(10, date);
-    cout << "\n08 Adding " <<10 << " years is: " << print_date(date) << endl;
+    cout << "\n08 Adding " << 10 << " years is: " << print_date(date) << endl;
 
     // 9
     date = AddXYears2(10, date);
@@ -249,7 +254,7 @@ int main()
     cout << "\n10 Adding one decade is: " << print_date(date) << endl;
 
     // 11
-    
+
     date = AdddXDecade(10, date);
     cout << "\n11 Adding " << 10 << " decades is: " << print_date(date) << endl;
 
@@ -265,5 +270,5 @@ int main()
     date = AddOneMillenuim(date);
     cout << "\n14 Adding one Millenuim is:" << print_date(date) << endl;
 
-    cout<<endl;
+    cout << endl;
 }

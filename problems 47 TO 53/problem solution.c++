@@ -165,13 +165,13 @@ stdate TheDateThatIndcatingThEndOfYear(stdate date)
 short DayUntillEndOfYear(stdate date)
 {
     stdate endOfYear = TheDateThatIndcatingThEndOfYear(date);
-    short d = 0;
+    //short d = 0;
     // while (isDate1LessThanDate2(date, endOfYear))
     // {
     //     d++;
     //     date = dateAfterAddingOneDay(date);
     // }
-    return d;
+    return getDiffBetween2dates(date,endOfYear);
 }
 
 string print_date(stdate date)

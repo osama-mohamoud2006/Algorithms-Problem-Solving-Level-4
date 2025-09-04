@@ -67,9 +67,9 @@ stdate dateAfterAddingOneDay(stdate date)
 }
 
 
-short getDiffBetween2dates(stdate date1, stdate date2)
+int getDiffBetween2dates(stdate date1, stdate date2)
 {
-    short days = 0;
+    int days = 0;
     while (isDate1LessThanDate2(date1, date2))
     {
         days++;
@@ -77,7 +77,6 @@ short getDiffBetween2dates(stdate date1, stdate date2)
     }
     return days;
 }
-
 
 
 short DayOrder(short year, short month, short day)
@@ -153,7 +152,7 @@ stdate TheDateThatIndcatingThEndOfYear(stdate date)
 
 short DaysUntillTheEndOfMonth(stdate date)
 {
-    short d = 0;
+    // short d = 0;
     stdate EndOFmonth;
     EndOFmonth.d = NumberOfDaysInMonth(date.y, date.m);
     EndOFmonth.m = date.m;

@@ -17,12 +17,55 @@ bool isLeap(short y)
     return ((y % 400 == 0) || (y % 4 == 0 && y % 100 != 0));
 }
 
+short NumberOfDaysInMonth(short y, short m)
+{
+
+    if (m < 1 || 12 < m)
+        return 0;
+    short arr[13] = {0, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
+    return (m == 2) ? ((isLeap(y) == true) ? 29 : 28) : arr[m];
+}
+
 bool isDate1LessThanDate2(stdate date, stdate date2)
 {
     return (date.y < date2.y) ? true : (date.y == date2.y) ? (date.m < date2.m) ? true : (date.m == date2.m) ? (date.d < date2.d) ? true : false
                                                                                                              : false
                                                            : false;
 }
+
+
+bool isLastDayInMonth(stdate date)
+{
+    return (NumberOfDaysInMonth(date.y, date.m) == date.d);
+}
+
+bool isLastMonthInYear(stdate date)
+{
+    return (date.m == 12);
+}
+
+stdate dateAfterAddingOneDay(stdate date)
+{
+
+    if (isLastDayInMonth(date) == true)
+    {
+        date.d = 1; // rest day 1
+
+        if (isLastMonthInYear(date) == true) // 1/1
+        {
+            date.m = 1;
+            date.y = date.y + 1;
+        }
+        else
+            date.m++;
+    }
+    else
+    {
+        date.d = date.d + 1;
+    }
+    return date;
+}
+
 
 short getDiffBetween2dates(stdate date1, stdate date2)
 {
@@ -35,14 +78,7 @@ short getDiffBetween2dates(stdate date1, stdate date2)
     return days;
 }
 
-short NumberOfDaysInMonth(short y, short m)
-{
 
-    if (m < 1 || 12 < m)
-        return 0;
-    short arr[13] = {0, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
-    return (m == 2) ? ((isLeap(y) == true) ? 29 : 28) : arr[m];
-}
 
 short DayOrder(short year, short month, short day)
 {
@@ -107,37 +143,6 @@ short DaysUntillEndOfWeek(stdate date)
     //    return 6-DayOrder(date); // 6 is thu bcz it is the end of the week
 }
 
-bool isLastDayInMonth(stdate date)
-{
-    return (NumberOfDaysInMonth(date.y, date.m) == date.d);
-}
-
-bool isLastMonthInYear(stdate date)
-{
-    return (date.m == 12);
-}
-
-stdate dateAfterAddingOneDay(stdate date)
-{
-
-    if (isLastDayInMonth(date) == true)
-    {
-        date.d = 1; // rest day 1
-
-        if (isLastMonthInYear(date) == true) // 1/1
-        {
-            date.m = 1;
-            date.y = date.y + 1;
-        }
-        else
-            date.m++;
-    }
-    else
-    {
-        date.d = date.d + 1;
-    }
-    return date;
-}
 
 stdate TheDateThatIndcatingThEndOfYear(stdate date)
 {

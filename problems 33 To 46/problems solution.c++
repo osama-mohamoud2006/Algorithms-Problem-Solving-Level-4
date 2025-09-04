@@ -163,6 +163,28 @@ stdate DecreaseXYears2(stdate date, short x = 10)
     return date;
 }
 
+stdate DecreaseOneDecade(stdate date)
+{
+    date.y -= 10;
+    return date;
+}
+
+stdate DecreaseXdecades(stdate date, short x = 10)
+{
+    for (short i = 1; i <= x; i++)
+    {
+        date = DecreaseOneDecade(date);
+    }
+    return date;
+}
+
+stdate DecreaseXdecades2(stdate date , short x=10){
+    date.y-=10*x;
+    return date;
+}
+
+
+stdaet 
 string print_date(stdate date)
 {
     return (to_string(date.d) + "/" + to_string(date.m) + "/" + to_string(date.y));
@@ -207,7 +229,18 @@ int main()
     // 9
     date = DecreaseXYears2(date);
     cout << "\n09-Substracting 10 years(faster) is: " << print_date(date) << endl;
+
     // 10
+    date = DecreaseOneDecade(date);
+    cout << "\n10-Substracting 1 decade is: " << print_date(date) << endl;
+
+    // 11
+    date = DecreaseXdecades(date);
+    cout << "\n11-Substracting 10 decades is: " << print_date(date) << endl;
+
+    //12
+    date=DecreaseXdecades2(date);
+    cout << "\n12-Substracting 10 decades(faster) is: " << print_date(date) << endl;
 
     cout << endl;
 }

@@ -27,9 +27,10 @@ bool isDate1LessThanDate2(stdate date, stdate date2)
 short getDiffBetween2dates(stdate date1, stdate date2)
 {
     short days = 0;
-    while(isDate1LessThanDate2(date1,date2)){
+    while (isDate1LessThanDate2(date1, date2))
+    {
         days++;
-        date1=dateAfterAddingOneDay(date1);
+        date1 = dateAfterAddingOneDay(date1);
     }
     return days;
 }
@@ -93,7 +94,6 @@ bool isBussinessDay(stdate date)
     return !isItWeekEnd(date);
 }
 
-
 short DaysUntillEndOfWeek(stdate date)
 {
     short d = 0;
@@ -106,7 +106,6 @@ short DaysUntillEndOfWeek(stdate date)
 
     //    return 6-DayOrder(date); // 6 is thu bcz it is the end of the week
 }
-
 
 bool isLastDayInMonth(stdate date)
 {
@@ -147,34 +146,32 @@ stdate TheDateThatIndcatingThEndOfYear(stdate date)
     return date;
 }
 
-
 short DaysUntillTheEndOfMonth(stdate date)
 {
     short d = 0;
     stdate EndOFmonth;
-     EndOFmonth.d= NumberOfDaysInMonth(date.y, date.m);
-     EndOFmonth.m =date.m;
-
+    EndOFmonth.d = NumberOfDaysInMonth(date.y, date.m);
+    EndOFmonth.m = date.m;
+    EndOFmonth.y = date.y;
 
     // while (date.d < daysOfMonth)
     // {
     //     d++;
     //     date.d++;
     // }
-    return d;
+    return getDiffBetween2dates(date, EndOFmonth);
 }
-
 
 short DayUntillEndOfYear(stdate date)
 {
     stdate endOfYear = TheDateThatIndcatingThEndOfYear(date);
-    //short d = 0;
-    // while (isDate1LessThanDate2(date, endOfYear))
-    // {
-    //     d++;
-    //     date = dateAfterAddingOneDay(date);
-    // }
-    return getDiffBetween2dates(date,endOfYear);
+    // short d = 0;
+    //  while (isDate1LessThanDate2(date, endOfYear))
+    //  {
+    //      d++;
+    //      date = dateAfterAddingOneDay(date);
+    //  }
+    return getDiffBetween2dates(date, endOfYear);
 }
 
 string print_date(stdate date)

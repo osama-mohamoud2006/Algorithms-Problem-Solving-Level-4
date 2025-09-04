@@ -12,20 +12,6 @@ struct stdate
     short d = 0;
 };
 
-stdate FillDate()
-{
-
-    stdate d;
-    static short c = 1;
-    cout << "\ndate" << c << endl;
-    d.d = enter_postive_number("enter d: ");
-    d.m = enter_postive_number("\nenter m: ");
-    d.y = enter_postive_number("\nenter y: ");
-    c++;
-
-    return d;
-}
-
 bool isLeap(short y)
 {
     return ((y % 400 == 0) || (y % 4 == 0 && y % 100 != 0));
@@ -125,7 +111,56 @@ short DaysUntillTheEndOfMonth(stdate date)
     return d;
 }
 
-stdate TheDateThatIndcatingThE
+bool isLastDayInMonth(stdate date)
+{
+    return (NumberOfDaysInMonth(date.y, date.m) == date.d);
+}
+
+bool isLastMonthInYear(stdate date)
+{
+    return (date.m == 12);
+}
+
+stdate dateAfterAddingOneDay(stdate date)
+{
+
+    if (isLastDayInMonth(date) == true)
+    {
+        date.d = 1; // rest day 1
+
+        if (isLastMonthInYear(date) == true) // 1/1
+        {
+            date.m = 1;
+            date.y = date.y + 1;
+        }
+        else
+            date.m++;
+    }
+    else
+    {
+        date.d = date.d + 1;
+    }
+    return date;
+}
+
+stdate TheDateThatIndcatingThEndOfYear(stdate date)
+{
+    date.m = 12;
+    date.d = 31;
+    return date;
+}
+
+short DayUntillEndOfYear(stdate date)
+{
+    stdate endOfYear = TheDateThatIndcatingThEndOfYear(date);
+    short d = 0;
+    while (isDate1LessThanDate2(date, endOfYear))
+    {
+        d++;
+        date = dateAfterAddingOneDay(date);
+    }
+    return d;
+}
 
 string print_date(stdate date)
 {
@@ -152,12 +187,12 @@ int main()
     (isBussinessDay(date)) ? cout << "today is business day!" : cout << "it isn't business day !\n";
 
     // 5
-    cout << "\n\ndays untill end of week : " << DaysUntillEndOfWeek(date) << " day";
+    cout << "\n\ndays untill end of week : " << DaysUntillEndOfWeek(date) << " day(s)";
     cout << endl;
 
     // 6
     cout << "Days unill the end of month: " << DaysUntillTheEndOfMonth(date) << " day(s)" << endl;
 
-    //7
-
+    // 7
+    cout<<"Days untill the end of the year: "<<DayUntillEndOfYear(date)<<" day(s)"<<endl;
 }

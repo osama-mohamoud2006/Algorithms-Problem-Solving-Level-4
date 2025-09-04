@@ -44,11 +44,7 @@ short DayOrder(short year, short month, short day)
 
 short DayOrder(stdate date)
 {
-    short a = ((14 - date.m) / 12);
-    short y = date.y - a;
-    short m = date.m + 12 * a - 2;
-
-    return (date.d + y + ((y / 4)) - ((y / 100)) + ((y / 400)) + (((31 * m) / 12))) % 7;
+  return DayOrder(date.y,date.m,date.d);
 }
 
 string dayAccordingToDayOrder(short weekOrder)
@@ -71,7 +67,7 @@ stdate LocalTime()
 
 bool isEndOfWeek(stdate date)
 {
-    // is suppose that thu is end of the week
+    // i suppose that thu is end of the week
     return (DayOrder(date) == 4) ? true : false;
 }
 
@@ -84,7 +80,7 @@ bool isItWeekEnd(stdate date)
 bool isBussinessDay(stdate date)
 {
     // if day isn't fri then it is bussiness day
-    return (DayOrder(date) != 5) ? true : false;
+    return !isItWeekEnd(date);
 }
 
 short DaysUntillEndOfWeek(stdate date)
@@ -96,6 +92,8 @@ short DaysUntillEndOfWeek(stdate date)
         date.d++;
     }
     return d;
+
+//    return 6-DayOrder(date); // 6 is thu bcz it is the end of the week
 }
 
 short DaysUntillTheEndOfMonth(stdate date)
@@ -175,7 +173,7 @@ int main()
     stdate date = LocalTime();
     cout << "\n"
          << dayAccordingToDayOrder(DayOrder(date)) << ", " << print_date(date) << endl;
-
+    cout << "_________________________\n";
     // 2
     (isEndOfWeek(date)) ? cout << "today is thu so it is the end of the week!" : cout << "it isn't the end of the week!\n";
     cout << endl;
@@ -194,5 +192,5 @@ int main()
     cout << "Days unill the end of month: " << DaysUntillTheEndOfMonth(date) << " day(s)" << endl;
 
     // 7
-    cout<<"Days untill the end of the year: "<<DayUntillEndOfYear(date)<<" day(s)"<<endl;
+    cout << "Days untill the end of the year: " << DayUntillEndOfYear(date) << " day(s)" << endl;
 }

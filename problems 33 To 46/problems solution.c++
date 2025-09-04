@@ -178,13 +178,23 @@ stdate DecreaseXdecades(stdate date, short x = 10)
     return date;
 }
 
-stdate DecreaseXdecades2(stdate date , short x=10){
-    date.y-=10*x;
+stdate DecreaseXdecades2(stdate date, short x = 10)
+{
+    date.y -= 10 * x;
     return date;
 }
 
+stdate DecreaseOneCentury(stdate date)
+{
+    date.y -= 100;
+    return date;
+}
+stdate DecreaseOneMillenum(stdate date)
+{
+    date.y -= 1000;
+    return date;
+}
 
-stdaet 
 string print_date(stdate date)
 {
     return (to_string(date.d) + "/" + to_string(date.m) + "/" + to_string(date.y));
@@ -238,9 +248,17 @@ int main()
     date = DecreaseXdecades(date);
     cout << "\n11-Substracting 10 decades is: " << print_date(date) << endl;
 
-    //12
-    date=DecreaseXdecades2(date);
+    // 12
+    date = DecreaseXdecades2(date);
     cout << "\n12-Substracting 10 decades(faster) is: " << print_date(date) << endl;
+
+    // 13
+    date = DecreaseOneCentury(date);
+    cout << "\n13-Substracting 1 century is: " << print_date(date) << endl;
+
+    // 14
+    date = DecreaseOneMillenum(date);
+    cout << "\n14-Substracting 10 decades is: " << print_date(date) << endl;
 
     cout << endl;
 }

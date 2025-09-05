@@ -60,7 +60,7 @@ bool isDate1LessThanDate2(stdate date, stdate date2)
 bool isItWeekEnd(stdate date)
 {
     // i suppose fri or sat is the week end
-    return (DayOrder(date) == 5 ||DayOrder(date) == 6) ? true : false;
+    return (DayOrder(date) == 5 || DayOrder(date) == 6) ? true : false;
 }
 
 stdate dateAfterAddingOneDay(stdate date)
@@ -88,14 +88,15 @@ stdate dateAfterAddingOneDay(stdate date)
 int NumberOfDaysForVaction(stdate date1, stdate date2)
 {
     int days = 0;
-    int weekend=0;
+    int weekend = 0;
     while (isDate1LessThanDate2(date1, date2))
     {
-        if(isItWeekEnd(date1))weekend++;
+        if (isItWeekEnd(date1))
+            weekend++;
         days++;
         date1 = dateAfterAddingOneDay(date1);
     }
-    return days-weekend;
+    return days - weekend;
 }
 stdate FillDate()
 {
@@ -111,17 +112,17 @@ stdate FillDate()
     return d;
 }
 
-
 string print_date(stdate date)
 {
     return (to_string(date.d) + "/" + to_string(date.m) + "/" + to_string(date.y));
 }
 
-int main(){
+int main()
+{
     stdate date1 = FillDate();
-        stdate date2 = FillDate(); 
-        cout<<"Vaction start from: "<<print_date(date1)<<endl;
-        cout<<"Vaction ends at: "<<print_date(date2)<<endl;
-cout<<"actual vaction days are: "<<NumberOfDaysForVaction(date1,date2)<<endl;
-
+    stdate date2 = FillDate();
+    cout << "\nVaction start from: " << print_date(date1) << endl;
+    cout << "Vaction ends at: " << print_date(date2) << endl;
+    cout << "actual vaction days are: " << NumberOfDaysForVaction(date1, date2) << endl;
+    cout<<endl;
 }

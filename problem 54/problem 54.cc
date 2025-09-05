@@ -63,6 +63,12 @@ bool isItWeekEnd(stdate date)
     return (DayOrder(date) == 5 || DayOrder(date) == 6) ? true : false;
 }
 
+bool isBussinessDay(stdate date)
+{
+    // if day isn't fri then it is bussiness day
+    return !isItWeekEnd(date);
+}
+
 stdate dateAfterAddingOneDay(stdate date)
 {
 
@@ -85,32 +91,44 @@ stdate dateAfterAddingOneDay(stdate date)
     return date;
 }
 
-int diffBetween2dates(stdate date1, stdate date2)
+// int diffBetween2dates(stdate date1, stdate date2)
+// {
+//     int days = 0;
+
+//     while (isDate1LessThanDate2(date1, date2))
+//     {
+
+//         days++;
+//         date1 = dateAfterAddingOneDay(date1);
+//     }
+//     return days;
+// }
+
+// int NumberOfDaysForVaction(stdate date1, stdate date2)
+// {
+//     short weekend = 0;
+//     while (isDate1LessThanDate2(date1, date2))
+//     {
+//         if (isItWeekEnd(date1))
+//         {
+//             weekend++;
+//         }
+
+//         date1 = dateAfterAddingOneDay(date1);
+//     }
+//     return abs(diffBetween2dates(date1, date2) - weekend);
+// }
+
+short NumberOfDaysForVaction(stdate DateFrom, stdate DateTo)
 {
-    int days = 0;
-
-    while (isDate1LessThanDate2(date1, date2))
+    short countDays = 0;
+    while (isDate1LessThanDate2(DateFrom, DateTo))
     {
-
-        days++;
-        date1 = dateAfterAddingOneDay(date1);
+        if (isBussinessDay(DateFrom))
+            countDays++;
+        DateFrom = dateAfterAddingOneDay(DateFrom);
     }
-    return days;
-}
-
-int NumberOfDaysForVaction(stdate date1, stdate date2)
-{
-    short weekend = 0;
-    while (isDate1LessThanDate2(date1, date2))
-    {
-        if (isItWeekEnd(date1))
-        {
-            weekend++;
-        }
-
-        date1 = dateAfterAddingOneDay(date1);
-    }
-    return abs(diffBetween2dates(date1, date2) - weekend);
+    return countDays;
 }
 
 stdate FillDate()
@@ -134,10 +152,10 @@ string print_date(stdate date)
 
 int main()
 {
-    stdate date1 = FillDate();
-    stdate date2 = FillDate();
-    cout << "\nVaction start from: " << print_date(date1) << endl;
-    cout << "Vaction ends at: " << print_date(date2) << endl;
-    cout << "actual vaction days are: " << NumberOfDaysForVaction(date1, date2) << endl;
+    stdate DateFrom = FillDate();
+    stdate DateTo = FillDate();
+    cout << "\nVaction start from: " << print_date(DateFrom) << endl;
+    cout << "Vaction ends at: " << print_date(DateTo) << endl;
+    cout << "actual vaction days are: " << NumberOfDaysForVaction(DateFrom, DateTo) << endl;
     cout << endl;
 }

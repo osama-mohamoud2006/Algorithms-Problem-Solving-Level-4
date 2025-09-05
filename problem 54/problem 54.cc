@@ -85,19 +85,31 @@ stdate dateAfterAddingOneDay(stdate date)
     return date;
 }
 
-int NumberOfDaysForVaction(stdate date1, stdate date2)
+int diffBetwwen2dates(stdate date1, stdate date2)
 {
     int days = 0;
-    int weekend = 0;
+   
     while (isDate1LessThanDate2(date1, date2))
     {
-        if (isItWeekEnd(date1))
-            weekend++;
+       
         days++;
         date1 = dateAfterAddingOneDay(date1);
     }
-    return days - weekend;
+    return days ;
 }
+
+int NumberOfDaysForVaction(stdate date1, stdate date2)
+{
+    short weekend = 0;
+    while (isDate1LessThanDate2(date1, date2))
+    {
+        if (isItWeekEnd(date1))weekend++;
+            
+        date1 = dateAfterAddingOneDay(date1);
+    }
+    return diffBetwwen2dates(date1,date2) - weekend;
+}
+
 stdate FillDate()
 {
 
@@ -124,5 +136,5 @@ int main()
     cout << "\nVaction start from: " << print_date(date1) << endl;
     cout << "Vaction ends at: " << print_date(date2) << endl;
     cout << "actual vaction days are: " << NumberOfDaysForVaction(date1, date2) << endl;
-    cout<<endl;
+    cout << endl;
 }

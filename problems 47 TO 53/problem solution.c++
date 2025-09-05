@@ -33,7 +33,6 @@ bool isDate1LessThanDate2(stdate date, stdate date2)
                                                            : false;
 }
 
-
 bool isLastDayInMonth(stdate date)
 {
     return (NumberOfDaysInMonth(date.y, date.m) == date.d);
@@ -66,7 +65,6 @@ stdate dateAfterAddingOneDay(stdate date)
     return date;
 }
 
-
 int getDiffBetween2dates(stdate date1, stdate date2)
 {
     int days = 0;
@@ -77,7 +75,6 @@ int getDiffBetween2dates(stdate date1, stdate date2)
     }
     return days;
 }
-
 
 short DayOrder(short year, short month, short day)
 {

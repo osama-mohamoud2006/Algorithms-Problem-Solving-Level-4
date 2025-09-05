@@ -91,44 +91,30 @@ stdate dateAfterAddingOneDay(stdate date)
     return date;
 }
 
-// int diffBetween2dates(stdate date1, stdate date2)
-// {
-//     int days = 0;
-
-//     while (isDate1LessThanDate2(date1, date2))
-//     {
-
-//         days++;
-//         date1 = dateAfterAddingOneDay(date1);
-//     }
-//     return days;
-// }
-
-// int NumberOfDaysForVaction(stdate date1, stdate date2)
-// {
-//     short weekend = 0;
-//     while (isDate1LessThanDate2(date1, date2))
-//     {
-//         if (isItWeekEnd(date1))
-//         {
-//             weekend++;
-//         }
-
-//         date1 = dateAfterAddingOneDay(date1);
-//     }
-//     return abs(diffBetween2dates(date1, date2) - weekend);
-// }
-
-short NumberOfDaysForVaction(stdate DateFrom, stdate DateTo)
+short actualBussinessDays(short vactionDays, stdate date)
 {
-    short countDays = 0;
-    while (isDate1LessThanDate2(DateFrom, DateTo))
+
+   short weekend=0;
+    while (isItWeekEnd(date))
     {
-        if (isBussinessDay(DateFrom))
-            countDays++;
-        DateFrom = dateAfterAddingOneDay(DateFrom);
+        weekend++;
+        date=dateAfterAddingOneDay(date);
     }
-    return countDays;
+   return weekend;
+}
+
+
+stdate WillReturnDate(short ActualbussinessDays,stdate date)
+{
+    short weekend =actualBussinessDays(ActualbussinessDays,date);
+ 
+
+    for (int i = 1; i <= ActualbussinessDays+weekend; i++)
+    {
+       
+         date = dateAfterAddingOneDay(date);
+    }
+    return date;
 }
 
 stdate FillDate()
@@ -159,10 +145,9 @@ string dayAccordingToDayOrder(short weekOrder)
 int main()
 {
     stdate DateFrom = FillDate();
-    stdate DateTo = FillDate();
-    cout << "\nVaction start from: " << dayAccordingToDayOrder(DayOrder(DateFrom)) << "," << print_date(DateFrom) << endl;
+    short vaction =enter_postive_number("enter Vaction days: ");
 
-    cout << "Vaction ends at: " << dayAccordingToDayOrder(DayOrder(DateTo)) << "," << print_date(DateTo) << endl;
-    cout << "actual vaction days are: " << NumberOfDaysForVaction(DateFrom, DateTo) << endl;
-    cout << endl;
+    short bussinessDays = actualBussinessDays(vaction,DateFrom);
+
+    cout<<"will return date: "<<print_date( WillReturnDate(bussinessDays,DateFrom))<<endl;
 }

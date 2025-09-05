@@ -92,7 +92,7 @@ short DayOrder(stdate date)
 
 string dayAccordingToDayOrder(short weekOrder)
 {
-    string days[] = {"Sun", "Mon", "Tue", "Wed", "Thu", "Fri"};
+    string days[] = {"Sun", "Mon", "Tue", "Wed", "Thu", "Fri","Sat"};
     return days[weekOrder];
 }
 

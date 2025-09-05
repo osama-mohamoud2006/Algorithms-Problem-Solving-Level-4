@@ -150,12 +150,18 @@ string print_date(stdate date)
     return (to_string(date.d) + "/" + to_string(date.m) + "/" + to_string(date.y));
 }
 
+string dayAccordingToDayOrder(short weekOrder)
+{
+    string days[] = {"Sun", "Mon", "Tue", "Wed", "Thu", "Fri","Sat"};
+    return days[weekOrder];
+}
+
 int main()
 {
     stdate DateFrom = FillDate();
     stdate DateTo = FillDate();
-    cout << "\nVaction start from: " << print_date(DateFrom) << endl;
-    cout << "Vaction ends at: " << print_date(DateTo) << endl;
+    cout << "\nVaction start from: " << dayAccordingToDayOrder(DayOrder(DateFrom))<<","<<print_date(DateFrom) << endl;
+    cout << "Vaction ends at: " <<  dayAccordingToDayOrder(DayOrder(DateTo))<<","<<print_date(DateTo) << endl;
     cout << "actual vaction days are: " << NumberOfDaysForVaction(DateFrom, DateTo) << endl;
     cout << endl;
 }

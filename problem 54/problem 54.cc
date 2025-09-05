@@ -161,6 +161,7 @@ int main()
     stdate DateFrom = FillDate();
     stdate DateTo = FillDate();
     cout << "\nVaction start from: " << dayAccordingToDayOrder(DayOrder(DateFrom))<<","<<print_date(DateFrom) << endl;
+    
     cout << "Vaction ends at: " <<  dayAccordingToDayOrder(DayOrder(DateTo))<<","<<print_date(DateTo) << endl;
     cout << "actual vaction days are: " << NumberOfDaysForVaction(DateFrom, DateTo) << endl;
     cout << endl;

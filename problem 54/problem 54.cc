@@ -85,17 +85,17 @@ stdate dateAfterAddingOneDay(stdate date)
     return date;
 }
 
-int diffBetwwen2dates(stdate date1, stdate date2)
+int diffBetween2dates(stdate date1, stdate date2)
 {
     int days = 0;
-   
+
     while (isDate1LessThanDate2(date1, date2))
     {
-       
+
         days++;
         date1 = dateAfterAddingOneDay(date1);
     }
-    return days ;
+    return days;
 }
 
 int NumberOfDaysForVaction(stdate date1, stdate date2)
@@ -103,11 +103,14 @@ int NumberOfDaysForVaction(stdate date1, stdate date2)
     short weekend = 0;
     while (isDate1LessThanDate2(date1, date2))
     {
-        if (isItWeekEnd(date1))weekend++;
-            
+        if (isItWeekEnd(date1))
+        {
+            weekend++;
+        }
+
         date1 = dateAfterAddingOneDay(date1);
     }
-    return diffBetwwen2dates(date1,date2) - weekend;
+    return abs(diffBetween2dates(date1, date2) - weekend);
 }
 
 stdate FillDate()

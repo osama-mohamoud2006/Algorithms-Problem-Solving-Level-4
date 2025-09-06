@@ -39,11 +39,11 @@ enCompareDates CompareDates(stdate date1, stdate date2)
 {
     if (isDate1LessThanDate2(date1, date2))
         return enCompareDates::before;
-        
+
     if (isDate1EqualsDate2(date1, date2))
         return enCompareDates::equal;
 
-    return enCompareDates::after;
+    return enCompareDates::after; // if it isn't before or equal then it is after
 }
 
 stdate FillDate()

@@ -124,17 +124,37 @@ bool isYourDateExistsInPeriod(stPeriod p, stdate dateToCheck)
   return !(CompareDates(dateToCheck,p.StartDate)==before || CompareDates(dateToCheck,p.EndDate) ==after );
 }
 
-short intersectedDays(stPeriod p1, stPeriod p2)
+
+short diifBetween2dates(stdate date, stdate date2, bool EndDay = false)
 {
     short days = 0;
-
-    while (isYourDateExistsInPeriod(p1,p2.StartDate) == true)
+    while (CompareDates(date, date2) == enCompareDates::before)
     {
         days++;
-      
-        p2.StartDate = dateAfterAddingOneDay(p2.StartDate);
+        date = dateAfterAddingOneDay(date);
     }
-    return days-1;
+    return (EndDay) ? days += 1 : days;
+}
+
+short PeriodLength(stPeriod p1, bool EndDay = false)
+{
+    return diifBetween2dates(p1.StartDate, p1.EndDate, EndDay);
+}
+
+short intersectedDays(stPeriod p1, stPeriod p2)
+{
+    // this logic is true but not accurate (if p2>p1)//
+    // short days = 0;
+
+    // while (isYourDateExistsInPeriod(p1,p2.StartDate) == true)
+    // {
+    //     days++;
+      
+    //     p2.StartDate = dateAfterAddingOneDay(p2.StartDate);
+    // }
+    // return days-1;
+
+
 }
 
 int main()

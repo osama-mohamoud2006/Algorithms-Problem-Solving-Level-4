@@ -28,6 +28,7 @@ bool isDate1AfterDate2(stdate date1, stdate date2)
 {
     // // 1/1/2022 is after 1/1/2000
     // return (date1.y > date2.y) ? true : (date1.y == date2.y) ? (date1.m > date2.m) ? true : (date1.m == date2.m)   ? (date1.d > date2.d) ? true : false : false:false;
+    return (!isDate1LessThanDate2(date1,date2)&& !isDate1EqualsDate2(date1,date2));
 }
 
 stdate FillDate()
@@ -50,7 +51,7 @@ int main()
     stdate date2 = FillDate();
 
     if (isDate1AfterDate2(date1, date2))
-        cout << "Date1 is After date2\n";
+        cout << "\nDate1 is After date2\n";
     else
-        cout << "date 1 isn't after date 2\n";
+        cout << "\nDate 1 isn't after date 2\n";
 }

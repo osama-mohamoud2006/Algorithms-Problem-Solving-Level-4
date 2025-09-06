@@ -124,22 +124,33 @@ enCompareDates CompareDates(stdate date1, stdate date2)
 //     else return true;
 // }
 
-short PeriodLength(stPeriod p1, bool EndDay=false)
+short diifBetween2dates(stdate date, stdate date2, bool EndDay = false)
 {
     short days = 0;
-    while (CompareDates(p1.StartDate, p1.EndDate)==before)
+    while (CompareDates(date, date2) == enCompareDates::before)
     {
         days++;
-        p1.StartDate = dateAfterAddingOneDay(p1.StartDate);
+        date = dateAfterAddingOneDay(date);
     }
-    return (EndDay)? days+=1 : days;
+     return (EndDay) ? days += 1 : days;
 }
 
 
+short PeriodLength(stPeriod p1, bool EndDay = false)
+{
+    // short days = 0;
+    // while (CompareDates(p1.StartDate, p1.EndDate) == before)
+    // {
+    //     days++;
+    //     p1.StartDate = dateAfterAddingOneDay(p1.StartDate);
+    // }
+    // return (EndDay) ? days += 1 : days;
+
+    return diifBetween2dates(p1.StartDate,p1.EndDate,EndDay);
+}
 
 int main()
 {
     stPeriod p1 = FillPeriod();
-    cout<<"period length is: "<<PeriodLength(p1,true)<<endl;
-
+    cout << "period length is: " << PeriodLength(p1, true) << endl;
 }

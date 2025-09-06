@@ -91,28 +91,26 @@ stdate dateAfterAddingOneDay(stdate date)
     return date;
 }
 
-short actualBussinessDays(short vactionDays, stdate date)
+stdate WillReturnDate(short vactionDays, stdate date)
 {
-
-   short weekend=0;
-    while (isItWeekEnd(date))
+    short weekend = 0;
+    // get the first bussiness day
+    while (isItWeekEnd(date)) // if it is week end then go to the first bussiness day
     {
-        weekend++;
-        date=dateAfterAddingOneDay(date);
+        date = dateAfterAddingOneDay(date);
     }
-   return weekend;
-}
 
-
-stdate WillReturnDate(short ActualbussinessDays,stdate date)
-{
-    short weekend =actualBussinessDays(ActualbussinessDays,date);
- 
-
-    for (int i = 1; i <= ActualbussinessDays+weekend; i++)
+    for (int i = 1; i <= vactionDays + weekend; i++)
     {
-       
-         date = dateAfterAddingOneDay(date);
+        // if i have weekend then add it to vaction
+        if (isItWeekEnd(date))
+            weekend++;
+        date = dateAfterAddingOneDay(date);
+    }
+
+    while (isItWeekEnd(date)) // if it is week end then go to the first bussiness day
+    {
+        date = dateAfterAddingOneDay(date);
     }
     return date;
 }
@@ -145,9 +143,7 @@ string dayAccordingToDayOrder(short weekOrder)
 int main()
 {
     stdate DateFrom = FillDate();
-    short vaction =enter_postive_number("enter Vaction days: ");
+    short vaction = enter_postive_number("enter Vaction days: ");
 
-    short bussinessDays = actualBussinessDays(vaction,DateFrom);
-
-    cout<<"will return date: "<<print_date( WillReturnDate(bussinessDays,DateFrom))<<endl;
+    cout << "will return date: " << print_date(WillReturnDate(vaction, DateFrom)) << endl;
 }

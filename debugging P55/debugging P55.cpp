@@ -148,7 +148,5 @@ int main()
     stdate DateFrom = FillDate();
     short vaction = enter_postive_number("enter Vaction days: ");
 
-   
-
     cout << "will return date: " << print_date(WillReturnDate(vaction, DateFrom)) << endl;
 }

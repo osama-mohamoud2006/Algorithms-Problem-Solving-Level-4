@@ -118,38 +118,22 @@ enCompareDates CompareDates(stdate date1, stdate date2)
     return enCompareDates::after; // if it isn't before or equal then it is after
 }
 
-// bool isIntersectedPeriods(stPeriod p1, stPeriod p2)
-// {
-//     if(CompareDates(p2.EndDate,p1.StartDate)==before || CompareDates(p1.EndDate,p2.StartDate) ==before ) return false;
-//     else return true;
-// }
-
-short diifBetween2dates(stdate date, stdate date2, bool EndDay = false)
+bool isYourDateExistsInPeriod(stPeriod p, stdate dateToCheck)
 {
-    short days = 0;
-    while (CompareDates(date, date2) == enCompareDates::before)
+    while (CompareDates(p.StartDate, p.EndDate) == enCompareDates::before)
     {
-        days++;
-        date = dateAfterAddingOneDay(date);
+        if(CompareDates( p.StartDate,dateToCheck)== enCompareDates::equal) return true;
+        p.StartDate = dateAfterAddingOneDay(p.StartDate);
     }
-    return (EndDay) ? days += 1 : days;
+    return false;
 }
 
-short PeriodLength(stPeriod p1, bool EndDay = false)
-{
-    // short days = 0;
-    // while (CompareDates(p1.StartDate, p1.EndDate) == before)
-    // {
-    //     days++;
-    //     p1.StartDate = dateAfterAddingOneDay(p1.StartDate);
-    // }
-    // return (EndDay) ? days += 1 : days;
+int main(){
+    stPeriod p = FillPeriod();
+    stdate date = FillDate();
 
-    return diifBetween2dates(p1.StartDate, p1.EndDate, EndDay);
-}
+    if(isYourDateExistsInPeriod(p,date))
+    cout<<"yes the date exists in period range!\n";
+    cout<<"No\n";
 
-int main()
-{
-    stPeriod p1 = FillPeriod();
-    cout << "period length is: " << PeriodLength(p1, true) << endl;
 }

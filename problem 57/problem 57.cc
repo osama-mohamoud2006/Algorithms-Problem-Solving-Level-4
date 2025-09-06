@@ -35,28 +35,35 @@ bool isDate1AfterDate2(stdate date1, stdate date2)
     return (!isDate1LessThanDate2(date1, date2) && !isDate1EqualsDate2(date1, date2));
 }
 
-enCompareDates IsDate1BeforeDate2(stdate date1, stdate date2)
-{
-    return (isDate1LessThanDate2(date1, date2)) ? enCompareDates::before : enCompareDates::none;
-}
-
-enCompareDates IsDate1EqualsDate2(stdate date1, stdate date2)
-{
-    return (isDate1EqualsDate2(date1, date2)) ? enCompareDates::equal : enCompareDates::none;
-}
-
-enCompareDates IsDate1AfterDate2(stdate date1, stdate date2)
-{
-    return (isDate1AfterDate2(date1, date2)) ? enCompareDates::after : enCompareDates::none;
-}
-
 enCompareDates CompareDates(stdate date1, stdate date2)
 {
-    if(isDate1LessThanDate2(date1,date2))return IsDate1BeforeDate2(date1,date2);
-    if(isDate1EqualsDate2(date1,date2)) return IsDate1EqualsDate2(date1,date2);
-    if(isDate1AfterDate2(date1,date2)) return IsDate1AfterDate2(date1,date2);
+    if (isDate1LessThanDate2(date1, date2))
+        return enCompareDates::before;
+        
+    if (isDate1EqualsDate2(date1, date2))
+        return enCompareDates::equal;
+
+    return enCompareDates::after;
 }
 
-int main(){
-    
+stdate FillDate()
+{
+
+    stdate d;
+    static short c = 1;
+    cout << "\ndate" << c << endl;
+    d.d = enter_postive_number("enter d: ");
+    d.m = enter_postive_number("\nenter m: ");
+    d.y = enter_postive_number("\nenter y: ");
+    c++;
+
+    return d;
+}
+
+int main()
+{
+    stdate date1 = FillDate();
+    stdate date2 = FillDate();
+
+    cout << "compare result is: " << CompareDates(date1, date2) << "\n\n";
 }

@@ -12,10 +12,22 @@ struct stdate
     short d = 0;
 };
 
+bool isDate1LessThanDate2(stdate date, stdate date2)
+{
+    return (date.y < date2.y) ? true : (date.y == date2.y) ? (date.m < date2.m) ? true : (date.m == date2.m) ? (date.d < date2.d) ? true : false
+                                                                                                             : false
+                                                           : false;
+}
+
+bool isDate1EqualsDate2(stdate date1, stdate date2){
+    return ((date1.y==date2.y)&&(date1.m==date2.m)&&(date1.d==date2.d));
+}
+
+
 bool isDate1AfterDate2(stdate date1, stdate date2)
 {
-    // 1/1/2022 is after 1/1/2000
-    return (date1.y > date2.y) ? true : (date1.y == date2.y) ? (date1.m > date2.m) ? true : (date1.m == date2.m)   ? (date1.d > date2.d) ? true : false : false:false;
+    // // 1/1/2022 is after 1/1/2000
+    // return (date1.y > date2.y) ? true : (date1.y == date2.y) ? (date1.m > date2.m) ? true : (date1.m == date2.m)   ? (date1.d > date2.d) ? true : false : false:false;
 }
 
 stdate FillDate()

@@ -120,20 +120,24 @@ enCompareDates CompareDates(stdate date1, stdate date2)
 
 bool isYourDateExistsInPeriod(stPeriod p, stdate dateToCheck)
 {
-    while (CompareDates(p.StartDate, p.EndDate) == enCompareDates::before)
-    {
-        if(CompareDates( p.StartDate,dateToCheck)== enCompareDates::equal) return true;
-        p.StartDate = dateAfterAddingOneDay(p.StartDate);
-    }
-    return false;
+    // while (CompareDates(p.StartDate, p.EndDate) == enCompareDates::before)
+    // {
+    //     if (CompareDates(p.StartDate, dateToCheck) == enCompareDates::equal)
+    //         return true;
+    //     p.StartDate = dateAfterAddingOneDay(p.StartDate);
+    // }
+    // return false;
+
+    return !(CompareDates(dateToCheck,p.StartDate)==before || CompareDates(dateToCheck,p.EndDate) ==after );
 }
 
-int main(){
+int main()
+{
     stPeriod p = FillPeriod();
     stdate date = FillDate();
 
-    if(isYourDateExistsInPeriod(p,date))
-    cout<<"yes the date exists in period range!\n";
-    cout<<"No\n";
-
+    if (isYourDateExistsInPeriod(p, date))
+        cout << "yes the date exists in period range!\n";
+    else
+        cout << "No\n";
 }

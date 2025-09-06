@@ -24,6 +24,50 @@ struct stPeriod
     stdate EndDate;
 };
 
+bool isLeap(short y)
+{
+    return ((y % 400 == 0) || (y % 4 == 0 && y % 100 != 0));
+}
+short NumberOfDaysInMonth(short y, short m)
+{
+
+    if (m < 1 || 12 < m)
+        return 0;
+    short arr[13] = {0, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
+    return (m == 2) ? ((isLeap(y) == true) ? 29 : 28) : arr[m];
+}
+
+bool isLastDayInMonth(stdate date)
+{
+    return (NumberOfDaysInMonth(date.y, date.m) == date.d);
+}
+
+bool isLastMonthInYear(stdate date)
+{
+    return (date.m == 12);
+}
+
+stdate dateAfterAddingOneDay(stdate date)
+{
+
+    if (isLastDayInMonth(date) == true)
+    {
+        date.d = 1; // rest day 1
+
+        if (isLastMonthInYear(date) == true) // 1/1
+        {
+            date.m = 1;
+            date.y = date.y + 1;
+        }
+        else
+            date.m++;
+    }
+    else
+    {
+        date.d = date.d + 1;
+    }
+    return date;
+}
 stdate FillDate()
 {
 
@@ -74,17 +118,28 @@ enCompareDates CompareDates(stdate date1, stdate date2)
     return enCompareDates::after; // if it isn't before or equal then it is after
 }
 
-bool isIntersectedPeriods(stPeriod p1, stPeriod p2)
-{
+// bool isIntersectedPeriods(stPeriod p1, stPeriod p2)
+// {
+//     if(CompareDates(p2.EndDate,p1.StartDate)==before || CompareDates(p1.EndDate,p2.StartDate) ==before ) return false;
+//     else return true;
+// }
 
-    if (CompareDates(p1.EndDate, p2.StartDate) == enCompareDates::before || CompareDates(p1.StartDate, p2.EndDate) == enCompareDates::after)
-        return false;
-    else
-        return true;
+short PeriodLength(stPeriod p1, bool EndDay=false)
+{
+    short days = 0;
+    while (CompareDates(p1.StartDate, p1.EndDate)==before)
+    {
+        days++;
+        p1.StartDate = dateAfterAddingOneDay(p1.StartDate);
+    }
+    return (EndDay)? days+=1 : days;
 }
 
-string print_date(stdate date)
-{
-    return (to_string(date.d) + "/" + to_string(date.m) + "/" + to_string(date.y));
-}
 
+
+int main()
+{
+    stPeriod p1 = FillPeriod();
+    cout<<"period length is: "<<PeriodLength(p1,true)<<endl;
+
+}

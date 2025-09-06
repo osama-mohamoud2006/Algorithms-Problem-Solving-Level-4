@@ -118,12 +118,19 @@ enCompareDates CompareDates(stdate date1, stdate date2)
     return enCompareDates::after; // if it isn't before or equal then it is after
 }
 
-
 bool isYourDateExistsInPeriod(stPeriod p, stdate dateToCheck)
 {
-  return !(CompareDates(dateToCheck,p.StartDate)==before || CompareDates(dateToCheck,p.EndDate) ==after );
+    return !(CompareDates(dateToCheck, p.StartDate) == before || CompareDates(dateToCheck, p.EndDate) == after);
 }
 
+bool isIntersectedPeriods(stPeriod p1, stPeriod p2)
+{
+
+    if (CompareDates(p1.EndDate, p2.StartDate) == enCompareDates::before || CompareDates(p1.StartDate, p2.EndDate) == enCompareDates::after)
+        return false;
+    else
+        return true;
+}
 
 short diifBetween2dates(stdate date, stdate date2, bool EndDay = false)
 {
@@ -136,7 +143,7 @@ short diifBetween2dates(stdate date, stdate date2, bool EndDay = false)
     return (EndDay) ? days += 1 : days;
 }
 
-short PeriodLength(stPeriod p1, bool EndDay = false)
+short PeriodLength(stPeriod p1, bool EndDay = false) // returns how many days between the start of date and the end of date
 {
     return diifBetween2dates(p1.StartDate, p1.EndDate, EndDay);
 }
@@ -149,12 +156,36 @@ short intersectedDays(stPeriod p1, stPeriod p2)
     // while (isYourDateExistsInPeriod(p1,p2.StartDate) == true)
     // {
     //     days++;
-      
+
     //     p2.StartDate = dateAfterAddingOneDay(p2.StartDate);
     // }
     // return days-1;
+    int P1_Lenght = PeriodLength(p1, true);
+    int P2_Lenght = PeriodLength(p2, true);
 
+    if (!isIntersectedPeriods(p1, p2)) // if itsn't intersectesd
+        return 0;
 
+    int count = 0;
+    if (P2_Lenght > P1_Lenght)
+    {
+        while (isDate1LessThanDate2(p1.StartDate, p1.EndDate))
+        {
+            if (isYourDateExistsInPeriod(p2, p1.StartDate))
+                count++;
+            p1.StartDate = dateAfterAddingOneDay(p1.StartDate);
+        }
+    }
+    else
+    {
+        while (isDate1LessThanDate2(p2.StartDate, p2.EndDate))
+        {
+            if (isYourDateExistsInPeriod(p1, p1.StartDate))
+                count++;
+            p2.StartDate = dateAfterAddingOneDay(p2.StartDate);
+        }
+    }
+    return count;
 }
 
 int main()

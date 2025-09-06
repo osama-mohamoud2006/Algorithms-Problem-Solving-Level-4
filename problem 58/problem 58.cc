@@ -74,13 +74,14 @@ enCompareDates CompareDates(stdate date1, stdate date2)
     return enCompareDates::after; // if it isn't before or equal then it is after
 }
 
-bool isIntersectedPeriods(stPeriod p1, stPeriod p2) {
-    if(isDate1LessThanDate2(p2.EndDate ,p1.StartDate)||isDate1AfterDate2(p2.StartDate,p1.EndDate) ) return true;
-    else return false;
+bool isIntersectedPeriods(stPeriod p1, stPeriod p2)
+{
+
+    if (CompareDates(p1.EndDate, p2.StartDate) == enCompareDates::before || CompareDates(p1.StartDate, p2.EndDate) == enCompareDates::after)
+        return false;
+    else
+        return true;
 }
-
-
-
 
 string print_date(stdate date)
 {
@@ -91,9 +92,9 @@ int main()
 {
     stPeriod p1 = FillPeriod();
     stPeriod p2 = FillPeriod();
-    cout << "\ndate from: " << print_date(p1.StartDate) << endl;
-    cout << "date to: " << print_date(p1.EndDate) << endl;
 
-    if(isIntersectedPeriods(p1,p2)) cout<<"Intersected!\n";
-    else cout<<"\nNot intersected\n";
+    if (isIntersectedPeriods(p1, p2))
+        cout << "Intersected!\n";
+    else
+        cout << "\nNot intersected\n";
 }

@@ -55,8 +55,6 @@ bool IsVaildDate(stdate dateToCheck)
     return true;
 }
 
-
-
 // split the string into d -- >vector , m--> vector
 vector<string> SplitString(string FullDateString)
 {
@@ -79,9 +77,10 @@ vector<string> SplitString(string FullDateString)
     return result;
 }
 
-// convert vector data into stdate
-stdate StringTODate(vector<string> &DateString)
+// convert lineOFstring data into stdate
+stdate StringTODate(string LineOfDate)
 {
+    vector<string> DateString = SplitString(LineOfDate); // call split to split string to fill struct correctly
     stdate date;
     date.d = stoi(DateString.at(0));
     date.m = stoi(DateString.at(1));
@@ -91,15 +90,26 @@ stdate StringTODate(vector<string> &DateString)
 
 void printDate(stdate date)
 {
-    cout<<"\nDay is: "<<date.d<<endl;
-    cout<<"Month is: "<<date.m<<endl;
-    cout<<"Year is: "<<date.y<<endl;
+    cout << "\nDay is: " << date.d << endl;
+    cout << "Month is: " << date.m << endl;
+    cout << "Year is: " << date.y << endl;
+    cout << endl;
+}
 
+string DateStructIntoSingleLine(stdate date)
+{
+    return (to_string(date.d) + "/" + to_string(date.m) + "/" + to_string(date.y));
 }
 
 int main()
 {
-    string FullDate = read_full_line("\nenter Full date in one line: ");
+    string FullDate = read_full_line("\nenter Full date dd/mm/yyyy: ");
 
+    stdate date = StringTODate(FullDate);
 
+    printDate(date);
+
+    cout<<"you enterd: "<<DateStructIntoSingleLine(date)<<endl;
+
+    cout<<endl;
 }

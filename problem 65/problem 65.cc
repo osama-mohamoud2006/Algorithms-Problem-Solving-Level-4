@@ -88,22 +88,27 @@ stdate StringTODate(string LineOfDate)
     return date;
 }
 
-
-// enum enDateFormat
-// {
-//     f1 = 1,
-//     f2 = 2,
-//     f3 = 3,
-//     f4 = 4,
-//     f5 = 5,
-//     f6 = 6
-// };
-
-string PrintDateFormat(stdate date, string DateForamt=)
+string FindWordInLineAndReaplceIt(string full_line, string string_to_replace, string replace_to)
 {
-    
-     
-    
+
+    short pos = 0;
+    // find the string to replace
+    while ((pos = full_line.find(string_to_replace)) != string::npos)
+    {
+        // start pos , to replace size , the new word
+        full_line.replace(pos, string_to_replace.size(), replace_to);
+        pos = full_line.find(string_to_replace); // find if there another string to replace
+    }
+    return full_line; // return after editing
+}
+
+string PrintDateFormat(stdate StDate, string DateForamt = "dd/mm/yyyy")
+{
+    string Date = "";
+    Date = FindWordInLineAndReaplceIt(DateForamt, "dd", to_string(StDate.d));
+    Date = Date + FindWordInLineAndReaplceIt(Date, "mm", to_string(StDate.m));
+    Date = Date + FindWordInLineAndReaplceIt(Date, "yyyy", to_string(StDate.y));
+    return Date;
 }
 
 int main()
@@ -113,7 +118,7 @@ int main()
     stdate date = StringTODate(FullDate);
     if (IsVaildDate(date))
     {
-       cout<< PrintDateFormat(date)<<endl;
+        cout << PrintDateFormat(date,"dd-mm-yyyy") << endl;
     }
     else
         cout << "\nyour date format isn't correct !" << endl;

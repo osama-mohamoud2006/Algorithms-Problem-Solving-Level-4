@@ -88,17 +88,22 @@ stdate StringTODate(string LineOfDate)
     return date;
 }
 
-void printDate(stdate date)
-{
-    cout << "\nDay is: " << date.d << endl;
-    cout << "Month is: " << date.m << endl;
-    cout << "Year is: " << date.y << endl;
-    cout << endl;
-}
 
-string DateStructIntoSingleLine(stdate date)
+// enum enDateFormat
+// {
+//     f1 = 1,
+//     f2 = 2,
+//     f3 = 3,
+//     f4 = 4,
+//     f5 = 5,
+//     f6 = 6
+// };
+
+string PrintDateFormat(stdate date, string DateForamt=)
 {
-    return (to_string(date.d) + "/" + to_string(date.m) + "/" + to_string(date.y));
+    
+     
+    
 }
 
 int main()
@@ -108,10 +113,7 @@ int main()
     stdate date = StringTODate(FullDate);
     if (IsVaildDate(date))
     {
-        printDate(date);
-
-        cout << "you enterd: " << DateStructIntoSingleLine(date) << endl;
-        cout << endl;
+       cout<< PrintDateFormat(date)<<endl;
     }
     else
         cout << "\nyour date format isn't correct !" << endl;

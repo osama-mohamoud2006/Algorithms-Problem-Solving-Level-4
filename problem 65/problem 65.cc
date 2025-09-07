@@ -118,7 +118,7 @@ int main()
     stdate date = StringTODate(FullDate);
     if (IsVaildDate(date))
     {
-        cout << PrintDateFormat(date,"dd-mm-yyyy") << endl;
+        cout << PrintDateFormat(date,"Day:dd-Month:mm-Year:yyyy") << endl;
     }
     else
         cout << "\nyour date format isn't correct !" << endl;

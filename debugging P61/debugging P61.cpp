@@ -1,33 +1,96 @@
-
-//solution 2 ///////////////////////////////////////////////////////////
-
-#include <cctype>
 #include <iostream>
 #include <string>
-#include <stdio.h>
 #include <vector>
+#include <ctime>
 #include "E:\projects\my library\AllStuff.h"
 using namespace std;
 using namespace AllStuff;
 
-string replace(string str, string which_string, string to_replace)
+struct stdate
 {
-    // searching about the string you want to replace
-    short pos = 0;
+    short y = 0;
+    short m = 0;
+    short d = 0;
+};
 
-    while ((pos = str.find(which_string)) != string::npos)
+bool isLeap(short y)
+{
+    return ((y % 400 == 0) || (y % 4 == 0 && y % 100 != 0));
+}
+
+short NumberOfDaysInMonth(short y, short m)
+{
+
+    if (m < 1 || 12 < m)
+        return 0;
+    short arr[13] = { 0, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };
+    return (m == 2) ? ((isLeap(y) == true) ? 29 : 28) : arr[m];
+}
+
+
+// split the string into d -- >vector , m--> vector
+vector<string> SplitString(string FullDateString)
+{
+    vector<string> result;
+    short pos = 0;
+    string delmi = "/";
+    string DateStructTofill;
+    while ((pos = FullDateString.find(delmi)) != string::npos)
     {
-        //str.replace(the start pos , how many chars you want to replace , the new string you want )
-        str = str.replace(pos, which_string.size(), to_replace);
-        pos = str.find(which_string);// to check if there is another string to replace 
+        DateStructTofill = FullDateString.substr(0, pos);
+        if (DateStructTofill != "")
+        {
+            result.push_back(DateStructTofill);
+        }
+        FullDateString.erase(0, pos + delmi.size());
     }
-    return str;
+    if (FullDateString != "")
+        result.push_back(FullDateString);
+
+    return result;
+}
+
+// convert lineOFstring data into stdate
+stdate StringTODate(string LineOfDate)
+{
+    vector<string> DateString = SplitString(LineOfDate); // call split string to fill struct correctly
+    stdate date;
+    date.d = stoi(DateString.at(0));
+    date.m = stoi(DateString.at(1));
+    date.y = stoi(DateString.at(2));
+    return date;
+}
+
+string FindWordInLineAndReaplceIt(string full_line, string string_to_replace, string replace_to)
+{
+    short pos = 0;
+    // get the first occuerence of "string_to_replace" --> pos
+    while ((pos = full_line.find(string_to_replace)) != string::npos)
+    {
+        // replace --> start pos , number of chars you want to replace , new string 
+        full_line.replace(pos, string_to_replace.size(), replace_to);
+        pos = full_line.find(string_to_replace);
+    }
+    return full_line;
+}
+
+string PrintDateFormat(stdate date, string DateForamt = "dd/mm/yyyy")
+{
+    // replace function takes your line and edit the desired string and return the line again with new edit
+    string datePrint = "";
+    datePrint = FindWordInLineAndReaplceIt(DateForamt, "dd", to_string(date.d));
+    datePrint = FindWordInLineAndReaplceIt(datePrint, "mm", to_string(date.m));
+    datePrint = FindWordInLineAndReaplceIt(datePrint, "yyyy", to_string(date.y));
+
+    return datePrint;
 }
 
 int main()
 {
-    string s = "Hi,iam osama from EGYPT ! \nHi, iam Eman from EGYPT !";
-    string which_string = "EGYPT";
-    string to_replace = "USA";
-    cout << replace(s, which_string, to_replace) << endl;
+    string FullDate = read_full_line("\nenter Full date dd/mm/yyyy: ");
+
+    stdate date = StringTODate(FullDate);
+  
+     cout << PrintDateFormat(date, "Day: dd - Month: mm - Year: yyyy") << endl;
+
 }

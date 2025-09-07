@@ -2,6 +2,7 @@
 E:\projects\my library\logic_stuff.h(117,14): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
   (compiling source file 'debugging%20P61.cpp')
   
-E:\projects\c++ course\08 - Algorithms & Problem Solving Level 4\debugging P61\debugging P61.cpp(18,27): warning C4267: '=': conversion from 'size_t' to 'short', possible loss of data
-E:\projects\c++ course\08 - Algorithms & Problem Solving Level 4\debugging P61\debugging P61.cpp(22,23): warning C4267: '=': conversion from 'size_t' to 'short', possible loss of data
+E:\projects\c++ course\08 - Algorithms & Problem Solving Level 4\debugging P61\debugging P61.cpp(38,38): warning C4267: '=': conversion from 'size_t' to 'short', possible loss of data
+E:\projects\c++ course\08 - Algorithms & Problem Solving Level 4\debugging P61\debugging P61.cpp(68,33): warning C4267: '=': conversion from 'size_t' to 'short', possible loss of data
+E:\projects\c++ course\08 - Algorithms & Problem Solving Level 4\debugging P61\debugging P61.cpp(72,29): warning C4267: '=': conversion from 'size_t' to 'short', possible loss of data
   debugging P61.vcxproj -> E:\projects\c++ course\08 - Algorithms & Problem Solving Level 4\debugging P61\x64\Debug\debugging P61.exe

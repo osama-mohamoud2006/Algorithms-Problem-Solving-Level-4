@@ -106,8 +106,8 @@ string PrintDateFormat(stdate StDate, string DateForamt = "dd/mm/yyyy")
 {
     string Date = "";
     Date = FindWordInLineAndReaplceIt(DateForamt, "dd", to_string(StDate.d));
-    Date = Date + FindWordInLineAndReaplceIt(Date, "mm", to_string(StDate.m));
-    Date = Date + FindWordInLineAndReaplceIt(Date, "yyyy", to_string(StDate.y));
+    Date =  FindWordInLineAndReaplceIt(Date, "mm", to_string(StDate.m));
+    Date = FindWordInLineAndReaplceIt(Date, "yyyy", to_string(StDate.y));
     return Date;
 }
 

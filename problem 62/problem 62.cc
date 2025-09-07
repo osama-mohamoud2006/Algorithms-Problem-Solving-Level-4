@@ -31,8 +31,31 @@ bool IsVaildDate(stdate dateToCheck)
     // if(dateToCheck.m>12) return false;
     // if(dateToCheck.d>NumberOfDaysInMonth(dateToCheck.y,dateToCheck.m)) return false;
 
-    return (dateToCheck.m > 12) ? false : (dateToCheck.d > NumberOfDaysInMonth(dateToCheck.y, dateToCheck.m)) ? false
-                                                                                                              : true;
+    // return (dateToCheck.m > 12 &&dateToCheck.m<1 ) ? false : (dateToCheck.d > NumberOfDaysInMonth(dateToCheck.y, dateToCheck.m) && dateToCheck.d<1 ) ? false:true;
+
+    if (dateToCheck.m > 12 || dateToCheck.m < 1)
+        return false;
+
+    if (dateToCheck.d > 31 || dateToCheck.d<1)
+        return false;
+
+    if (dateToCheck.m == 2)
+    {
+        if (isLeap(dateToCheck.y))
+        { // 29
+            if (dateToCheck.d > 29)
+                return false;
+        }
+        else //28 
+        {
+              if (dateToCheck.d > 28)
+                return false;
+        }
+    }
+
+    if(NumberOfDaysInMonth(dateToCheck.y,dateToCheck.m) < dateToCheck.d) return false;
+
+    return true;
 }
 
 stdate FillDate()

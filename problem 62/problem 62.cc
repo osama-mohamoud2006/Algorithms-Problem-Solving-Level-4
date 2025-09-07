@@ -31,7 +31,8 @@ bool IsVaildDate(stdate dateToCheck)
     // if(dateToCheck.m>12) return false;
     // if(dateToCheck.d>NumberOfDaysInMonth(dateToCheck.y,dateToCheck.m)) return false;
 
-   return (dateToCheck.m>12)?false:(dateToCheck.d>NumberOfDaysInMonth(dateToCheck.y,dateToCheck.m))?false:true;
+    return (dateToCheck.m > 12) ? false : (dateToCheck.d > NumberOfDaysInMonth(dateToCheck.y, dateToCheck.m)) ? false
+                                                                                                              : true;
 }
 
 stdate FillDate()
@@ -50,4 +51,9 @@ stdate FillDate()
 
 int main()
 {
+    stdate date = FillDate();
+    if (IsVaildDate(date))
+        cout << "Vaild date!\n";
+    else
+        cout << "Isn't Vaild date\n";
 }

@@ -1,0 +1,8 @@
+﻿  debugging P61.cpp
+E:\projects\my library\logic_stuff.h(117,14): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+  (compiling source file 'debugging%20P61.cpp')
+  
+E:\projects\c++ course\08 - Algorithms & Problem Solving Level 4\debugging P61\debugging P61.cpp(77,31): warning C4244: '=': conversion from 'double' to 'short', possible loss of data
+E:\projects\c++ course\08 - Algorithms & Problem Solving Level 4\debugging P61\debugging P61.cpp(78,31): warning C4244: '=': conversion from 'double' to 'short', possible loss of data
+E:\projects\c++ course\08 - Algorithms & Problem Solving Level 4\debugging P61\debugging P61.cpp(79,31): warning C4244: '=': conversion from 'double' to 'short', possible loss of data
+  debugging P61.vcxproj -> E:\projects\c++ course\08 - Algorithms & Problem Solving Level 4\debugging P61\x64\Debug\debugging P61.exe

@@ -33,7 +33,7 @@ short NumberOfDaysInMonth(short y, short m)
 
     if (m < 1 || 12 < m)
         return 0;
-    short arr[13] = {0, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
+    short arr[13] = { 0, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };
     return (m == 2) ? ((isLeap(y) == true) ? 29 : 28) : arr[m];
 }
 
@@ -98,8 +98,8 @@ stPeriod FillPeriod()
 bool isDate1LessThanDate2(stdate date, stdate date2)
 {
     return (date.y < date2.y) ? true : (date.y == date2.y) ? (date.m < date2.m) ? true : (date.m == date2.m) ? (date.d < date2.d) ? true : false
-                                                                                                             : false
-                                                           : false;
+        : false
+        : false;
 }
 
 bool isDate1AfterDate2(stdate date1, stdate date2)
@@ -150,17 +150,27 @@ short PeriodLength(stPeriod p1, bool EndDay = false) // returns how many days be
 
 short intersectedDays(stPeriod p1, stPeriod p2)
 {
-    int Pl1 = PeriodLength(p1);
-    int Pl2 = PeriodLength(p2);
+    // this logic is true but not accurate (if p2>p1)//
+    // short days = 0;
 
-    if (!isIntersectedPeriods(p1, p2))
+    // while (isYourDateExistsInPeriod(p1,p2.StartDate) == true)
+    // {
+    //     days++;
+
+    //     p2.StartDate = dateAfterAddingOneDay(p2.StartDate);
+    // }
+    // return days-1;
+    int P1_Lenght = PeriodLength(p1, true);
+    int P2_Lenght = PeriodLength(p2, true);
+
+    if (!isIntersectedPeriods(p1, p2)) // if itsn't intersectesd
         return 0;
-    short count = 0;
-    if (Pl2 > Pl1)
+
+    int count = 0;
+    if (P2_Lenght > P1_Lenght)
     {
         while (isDate1LessThanDate2(p1.StartDate, p1.EndDate))
         {
-            // walkthrough p1 as it is smaller than p2
             if (isYourDateExistsInPeriod(p2, p1.StartDate))
                 count++;
             p1.StartDate = dateAfterAddingOneDay(p1.StartDate);
@@ -170,8 +180,7 @@ short intersectedDays(stPeriod p1, stPeriod p2)
     {
         while (isDate1LessThanDate2(p2.StartDate, p2.EndDate))
         {
-            // walkthrough p1 as it is smaller than p2
-            if (isYourDateExistsInPeriod(p1, p2.StartDate))
+            if (isYourDateExistsInPeriod(p1, p1.StartDate))
                 count++;
             p2.StartDate = dateAfterAddingOneDay(p2.StartDate);
         }

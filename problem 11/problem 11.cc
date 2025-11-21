@@ -73,6 +73,7 @@ int main()
     cout << "\nNumber of days from begining of the year is: " << DayUntillDate(y, m, d) << endl;
 
     date data ; 
+    // number of days to date 
     data = ReturnDate(DayUntillDate(y, m, d),y);
        cout << data.d << "/" << data.m << "/" << data.y << endl;
 
